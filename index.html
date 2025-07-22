@@ -46,34 +46,6 @@
     h2 {
       margin-top: 0;
     }
-
-    /* Add form style */
-    section {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    input, button {
-      margin: 10px;
-      padding: 10px;
-      border: none;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-
-    input {
-      width: 200px;
-    }
-
-    button {
-      background-color: #fcb69f;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #ff7e5f;
-      color: white;
-    }
   </style>
 </head>
 <body>
@@ -81,66 +53,34 @@
     Welcome to Class 5B3!
   </header>
 
-<section>
-  <h2>Add a Classmate</h2>
-  <input type="text" id="name" placeholder="Name">
-  <input type="text" id="desc" placeholder="Description">
-  <button onclick="addCard()">Add</button>
-</section>
+  <section class="members">
+    <div class="card"><h2>An Huy</h2><p>Chess champion and genius ♟️</p></div>
+    <div class="card"><h2>Huy Long</h2><p>Giveaway buddy, tons of cash, Roblox pro 🎮</p></div>
+    <div class="card"><h2>Gia Bách</h2><p>Always vibing, super cool Minecraft gamer 🕹️😎</p></div>
+    <div class="card"><h2>Minh Châu</h2><p>Queen of M4FI0S0 and FORSAKEN 🎩💅🏻</p></div>
+    <div class="card"><h2>Le Vy</h2><p>Big brain girl, Mr. Patrick's favorite 📐😂</p></div>
+    <div class="card"><h2>Ngoc Minh</h2><p>Artistic genius drawing boss 🎨✨</p></div>
 
-<section class="members">
-  <div class="card"><h2>An Huy</h2><p>Chess champion and genius ♟️</p></div>
-  <div class="card"><h2>Huy Long</h2><p>Giveaway buddy, tons of cash, Roblox pro 🎮</p></div>
-  <div class="card"><h2>Gia Bách</h2><p>Always vibing, super cool Minecraft gamer 🕹️😎</p></div>
-  <div class="card"><h2>Minh Châu</h2><p>Queen of M4FI0S0 and FORSAKEN 🎩💅🏻</p></div>
-  <div class="card"><h2>Le Vy</h2><p>Big brain girl, Mr. Patrick's favorite 📐😂</p></div>
-  <div class="card"><h2>Ngoc Minh</h2><p>Artistic genius drawing boss 🎨✨</p></div>
+    <div class="card"><h2>Quang Anh</h2><p></p></div>
+    <div class="card"><h2>Gia Bao</h2><p></p></div>
+    <div class="card"><h2>Nhat Minh</h2><p></p></div>
+    <div class="card"><h2>Le Minh</h2><p></p></div>
+    <div class="card"><h2>Nhat Nam</h2><p></p></div>
+    <div class="card"><h2>Phuc Quang</h2><p></p></div>
+    <div class="card"><h2>Quang Thanh</h2><p></p></div>
+    <div class="card"><h2>Ta Khoa</h2><p></p></div>
+    <div class="card"><h2>Minh Khoi</h2><p></p></div>
+    <div class="card"><h2>Tien Dung</h2><p></p></div>
+    <div class="card"><h2>Gia Kien</h2><p></p></div>
 
-  <div class="card"><h2>Quang Anh</h2><p></p></div>
-  <div class="card"><h2>Gia Bao</h2><p></p></div>
-  <div class="card"><h2>Nhat Minh</h2><p></p></div>
-  <div class="card"><h2>Le Minh</h2><p></p></div>
-  <div class="card"><h2>Nhat Nam</h2><p></p></div>
-  <div class="card"><h2>Phuc Quang</h2><p></p></div>
-  <div class="card"><h2>Quang Thanh</h2><p></p></div>
-  <div class="card"><h2>Ta Khoa</h2><p></p></div>
-  <div class="card"><h2>Minh Khoi</h2><p></p></div>
-  <div class="card"><h2>Tien Dung</h2><p></p></div>
-  <div class="card"><h2>Gia Kien</h2><p></p></div>
-
-  <div class="card"><h2>Bao An</h2><p></p></div>
-  <div class="card"><h2>Diep Anh</h2><p></p></div>
-  <div class="card"><h2>Tram Anh</h2><p></p></div>
-  <div class="card"><h2>Minh Ngoc</h2><p></p></div>
-  <div class="card"><h2>Lan Vy</h2><p></p></div>
-  <div class="card"><h2>Ha Vy</h2><p></p></div>
-  <div class="card"><h2>Bao Han</h2><p></p></div>
-  <div class="card"><h2>Y Li</h2><p></p></div>
-</section>
-
-
-
-
-  <script>
-    function addCard() {
-      const name = document.getElementById('name').value.trim();
-      const desc = document.getElementById('desc').value.trim();
-
-      if (!name || !desc) {
-        alert("Please fill in both fields!");
-        return;
-      }
-
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `<h2>${name}</h2><p>${desc}</p>`;
-
-      document.querySelector(".members").appendChild(card);
-
-      // Clear inputs
-      document.getElementById('name').value = '';
-      document.getElementById('desc').value = '';
-    }
-  </script>
+    <div class="card"><h2>Bao An</h2><p></p></div>
+    <div class="card"><h2>Diep Anh</h2><p></p></div>
+    <div class="card"><h2>Tram Anh</h2><p></p></div>
+    <div class="card"><h2>Minh Ngoc</h2><p></p></div>
+    <div class="card"><h2>Lan Vy</h2><p></p></div>
+    <div class="card"><h2>Ha Vy</h2><p></p></div>
+    <div class="card"><h2>Bao Han</h2><p></p></div>
+    <div class="card"><h2>Y Li</h2><p></p></div>
+  </section>
 </body>
 </html>
