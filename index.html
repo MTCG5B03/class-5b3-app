@@ -2,102 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Class 5B3 App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>5B3 Members</title>
   <style>
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     }
 
     header {
-      background-color: #ffffffaa;
-      padding: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    h1 {
-      color: #333;
-      font-size: 3rem;
-      margin: 0;
-    }
-
-    p {
-      font-size: 1.3rem;
-      color: #555;
-      margin-top: 10px;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 1rem;
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      font-weight: bold;
     }
 
     .members {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      padding: 30px;
-      gap: 20px;
+      padding: 2rem;
     }
 
     .card {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.8);
+      margin: 1rem;
+      padding: 1.5rem;
       border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
       width: 200px;
-      padding: 20px;
-      transition: transform 0.2s;
+      text-align: center;
     }
 
     .card:hover {
       transform: scale(1.05);
     }
 
-    .card h2 {
-      margin: 0 0 10px;
-      font-size: 1.5rem;
+    h2 {
+      margin-top: 0;
     }
 
-    .card p {
+    /* Add form style */
+    section {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    input, button {
+      margin: 10px;
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
       font-size: 1rem;
-      color: #777;
     }
 
-    footer {
-      margin-top: 40px;
-      padding: 20px;
-      font-size: 0.9rem;
-      color: #888;
+    input {
+      width: 200px;
+    }
+
+    button {
+      background-color: #fcb69f;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ff7e5f;
+      color: white;
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to Class 5B3! 🎉</h1>
-    <p>This app showcases all our awesome members and their personalities!</p>
+    Welcome to Class 5B3!
   </header>
+
+  <section>
+    <h2>Add a Classmate</h2>
+    <input type="text" id="name" placeholder="Name">
+    <input type="text" id="desc" placeholder="Description">
+    <button onclick="addCard()">Add</button>
+  </section>
 
   <section class="members">
     <div class="card">
-      <h2>An Huy</h2>
-      <p>Genius and chess champion ♟️</p>
+      <h2>Lucas Thompson</h2>
+      <p>Friendly and smart, loves science and reading!</p>
     </div>
     <div class="card">
-      <h2>Minh Châu</h2>
-      <p>The M4FI0S0 who had Forsaken vibes 🔫</p>
+      <h2>Minh Thanh</h2>
+      <p>Creative mind, Roblox pro, and volcano master 🌋</p>
     </div>
-    <div class="card">
-      <h2>Gia Bách</h2>
-      <p>The bible-holding guy and always the good dude</p>
-    </div>
-    <div class="card">
-      <h2>Huy Long</h2>
-      <p>The giveaway dude and the pro gamer 🎮</p>
-    </div>
-    <!-- Add more classmates as needed! -->
   </section>
 
-  <footer>
-    &copy; 2025 Class 5B3 | Made with ❤️ and HTML
-  </footer>
+  <script>
+    function addCard() {
+      const name = document.getElementById('name').value.trim();
+      const desc = document.getElementById('desc').value.trim();
+
+      if (!name || !desc) {
+        alert("Please fill in both fields!");
+        return;
+      }
+
+      const card = document.createElement("div");
+      card.className = "card";
+      card.innerHTML = `<h2>${name}</h2><p>${desc}</p>`;
+
+      document.querySelector(".members").appendChild(card);
+
+      // Clear inputs
+      document.getElementById('name').value = '';
+      document.getElementById('desc').value = '';
+    }
+  </script>
 </body>
 </html>
