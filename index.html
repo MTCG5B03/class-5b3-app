@@ -1,16 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Class 5B3 App</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ffecd2, #fcb69f);
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+
+    header {
+      background-color: #ffffffaa;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #333;
+      font-size: 3rem;
+      margin: 0;
+    }
+
+    p {
+      font-size: 1.3rem;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    .members {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px;
+      gap: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 200px;
+      padding: 20px;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card h2 {
+      margin: 0 0 10px;
+      font-size: 1.5rem;
+    }
+
+    .card p {
+      font-size: 1rem;
+      color: #777;
+    }
+
+    footer {
+      margin-top: 40px;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+  </style>
 </head>
 <body>
-  <h1>Welcome to Class 5B3!</h1>
-  <p>This app showcases all our awesome members and their personalities 🎉</p>
-  
-  <button onclick="showMembers()">Meet the Class!</button>
-  <ul id="memberList"></ul>
+  <header>
+    <h1>Welcome to Class 5B3! 🎉</h1>
+    <p>This app showcases all our awesome members and their personalities!</p>
+  </header>
 
-  <script src="script.js"></script>
+  <section class="members">
+    <div class="card">
+      <h2>An Huy</h2>
+      <p>Genius and chess champion ♟️</p>
+    </div>
+    <div class="card">
+      <h2>Minh Châu</h2>
+      <p>The M4FI0S0 who had Forsaken vibes 🔫</p>
+    </div>
+    <div class="card">
+      <h2>Gia Bách</h2>
+      <p>The bible-holding guy and always the good dude</p>
+    </div>
+    <div class="card">
+      <h2>Huy Long</h2>
+      <p>The giveaway dude and the pro gamer 🎮</p>
+    </div>
+    <!-- Add more classmates as needed! -->
+  </section>
+
+  <footer>
+    &copy; 2025 Class 5B3 | Made with ❤️ and HTML
+  </footer>
 </body>
 </html>
