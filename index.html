@@ -153,42 +153,43 @@
     <div class="card"><h2>Y Li <span class="tag girl">Girl</span></h2><p>Class' manga storage 📘📕</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Y Li..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
   </section>
 
-  <script>
-    document.querySelectorAll(".card").forEach((card) => {
-      const name = card.querySelector("h2").innerText.trim().split(" ")[0];
-      const textarea = card.querySelector("textarea");
-      const button = card.querySelector("button");
-      const commentList = card.querySelector(".comments-list");
+<script>
+  document.querySelectorAll(".card").forEach((card) => {
+    const name = card.querySelector("h2").innerText.trim(); // ← Use full name now!
+    const textarea = card.querySelector("textarea");
+    const button = card.querySelector("button");
+    const commentList = card.querySelector(".comments-list");
 
-      // Load saved comments from localStorage
-      const saved = localStorage.getItem("comments_" + name);
-      if (saved) {
-        JSON.parse(saved).forEach(comment => {
-          const div = document.createElement("div");
-          div.className = "comment-item";
-          div.textContent = comment;
-          commentList.appendChild(div);
-        });
-      }
-
-      button.addEventListener("click", () => {
-        const text = textarea.value.trim();
-        if (text) {
-          const div = document.createElement("div");
-          div.className = "comment-item";
-          div.textContent = text;
-          commentList.appendChild(div);
-
-          // Save to localStorage
-          const existing = localStorage.getItem("comments_" + name);
-          const comments = existing ? JSON.parse(existing) : [];
-          comments.push(text);
-          localStorage.setItem("comments_" + name, JSON.stringify(comments));
-
-          textarea.value = "";
-        }
+    // Load saved comments from localStorage
+    const saved = localStorage.getItem("comments_" + name);
+    if (saved) {
+      JSON.parse(saved).forEach(comment => {
+        const div = document.createElement("div");
+        div.className = "comment-item";
+        div.textContent = comment;
+        commentList.appendChild(div);
       });
+    }
+
+    button.addEventListener("click", () => {
+      const text = textarea.value.trim();
+      if (text) {
+        const div = document.createElement("div");
+        div.className = "comment-item";
+        div.textContent = text;
+        commentList.appendChild(div);
+
+        // Save to localStorage
+        const existing = localStorage.getItem("comments_" + name);
+        const comments = existing ? JSON.parse(existing) : [];
+        comments.push(text);
+        localStorage.setItem("comments_" + name, JSON.stringify(comments));
+
+        textarea.value = "";
+      }
     });
-  </script>
+  });
+</script>
+
 </body>
 </html>
