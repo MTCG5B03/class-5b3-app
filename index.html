@@ -166,10 +166,10 @@
 
     const saved = localStorage.getItem("comments_" + name);
     if (saved) {
-      JSON.parse(saved).forEach(comment => {
+      JSON.parse(saved).forEach(({ user, text }) => {
         const div = document.createElement("div");
         div.className = "comment-item";
-        div.textContent = comment;
+        div.textContent = `${user}: ${text}`;
         commentList.appendChild(div);
       });
     }
@@ -177,14 +177,17 @@
     button.addEventListener("click", () => {
       const text = textarea.value.trim();
       if (text) {
+        const username = prompt("Enter your name:");
+        if (!username) return;
+
         const div = document.createElement("div");
         div.className = "comment-item";
-        div.textContent = text;
+        div.textContent = `${username}: ${text}`;
         commentList.appendChild(div);
 
         const existing = localStorage.getItem("comments_" + name);
         const comments = existing ? JSON.parse(existing) : [];
-        comments.push(text);
+        comments.push({ user: username, text: text });
         localStorage.setItem("comments_" + name, JSON.stringify(comments));
 
         textarea.value = "";
@@ -192,6 +195,7 @@
     });
   });
 </script>
+
 
 </body>
 </html>
