@@ -12,28 +12,26 @@
       background: linear-gradient(135deg, #ff9a9e, #fad0c4);
     }
 
-    header {
+    nav {
       display: flex;
       justify-content: center;
-      gap: 2rem;
-      background-color: rgba(255, 255, 255, 0.2);
+      gap: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.3);
       padding: 1rem;
-      color: white;
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: bold;
     }
 
-    header button {
+    nav a {
+      color: #333;
+      text-decoration: none;
       background-color: white;
-      border: none;
-      border-radius: 10px;
       padding: 0.5rem 1rem;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s ease;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
     }
 
-    header button:hover {
+    nav a:hover {
       background-color: #ffe5ec;
     }
 
@@ -118,13 +116,18 @@
   </style>
 </head>
 <body>
-  <header>
-  <button onclick="alert('You\'re already on the Class Members page!')">Class Members</button>
-  <a href="gallery.html"><button>Class Gallery</button></a>
-</header>
-  <a href="couples.html">💘 Confirmed Couples Lol</a>
-</header>
-  <section class="members" id="members-section">
+
+<!-- 🌐 Navigation bar -->
+<nav>
+  <a href="index.html">🏠 Home</a>
+  <a href="class.html">👥 Class Members</a>
+  <a href="gallery.html">📸 Class Gallery</a>
+  <a href="couples.html">💘 Confirmed Couples</a>
+</nav>
+<h1 style="margin-top: 2rem; color: #fff; text-shadow: 2px 2px 5px #000;">Class 5B3 Members</h1>
+
+<!-- 👥 Class Members Section -->
+<section class="members" id="members-section">
  <div class="card"><h2>An Huy <span class="tag boy">Boy</span></h2><p>Chess champion and genius ♟️🧠</p><div class="comment-box"><textarea rows="2" placeholder="Say something about An Huy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
     <div class="card"><h2>Huy Long <span class="tag boy">Boy</span></h2><p>Giveaway buddy, tons of cash, Roblox pro 🎮</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Huy Long..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
     <div class="card"><h2>Gia Bách <span class="tag boy">Boy</span></h2><p>Always vibing, super cool Minecraft gamer 🕹️😎</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Gia Bách..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
@@ -151,16 +154,16 @@
     <div class="card"><h2>Ha Vy <span class="tag girl">Girl</span></h2><p>Jack of all trades, master of none 🃏</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Ha Vy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
     <div class="card"><h2>Bao Han <span class="tag girl">Girl</span></h2><p>Sleep anywhere, anytime 💤😴</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Bao Han..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
     <div class="card"><h2>Y Li <span class="tag girl">Girl</span></h2><p>Class' manga storage 📘📕</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Y Li..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-  </section>
+</section>
 
+<!-- 💬 Commenting functionality -->
 <script>
   document.querySelectorAll(".card").forEach((card) => {
-    const name = card.querySelector("h2").innerText.trim(); // ← Use full name now!
+    const name = card.querySelector("h2").innerText.trim();
     const textarea = card.querySelector("textarea");
     const button = card.querySelector("button");
     const commentList = card.querySelector(".comments-list");
 
-    // Load saved comments from localStorage
     const saved = localStorage.getItem("comments_" + name);
     if (saved) {
       JSON.parse(saved).forEach(comment => {
@@ -179,7 +182,6 @@
         div.textContent = text;
         commentList.appendChild(div);
 
-        // Save to localStorage
         const existing = localStorage.getItem("comments_" + name);
         const comments = existing ? JSON.parse(existing) : [];
         comments.push(text);
