@@ -3,21 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery Page</title>
+  <title>Class 5B3 Gallery</title>
   <link rel="stylesheet" href="gallery.css" />
 </head>
 <body>
-  <h1>Photo Gallery 📸</h1>
-  <p>Some cool shots from our adventures!</p>
+  <h1>📸 Class 5B3 Gallery</h1>
+  <p>Here you’ll find photos and memories from our epic school year!</p>
 
   <div class="gallery">
-    <img src="image1.jpg" alt="Image 1">
-    <img src="image2.jpg" alt="Image 2">
-    <img src="image3.jpg" alt="Image 3">
-    <img src="image4.jpg" alt="Image 4">
-    <!-- Add more <img> tags as needed -->
+    <img src="images/photo1.jpg" alt="Photo 1" />
+    <img src="images/photo2.jpg" alt="Photo 2" />
+    <img src="images/photo3.jpg" alt="Photo 3" />
   </div>
 
-  <a href="index.html" class="back-button">Back to Home</a>
+  <h2>💬 Leave a Comment</h2>
+  <input type="text" id="nameInput" placeholder="Your name" />
+  <textarea id="commentInput" placeholder="Write your comment..."></textarea>
+  <button onclick="addComment()">Post</button>
+
+  <div id="commentsSection"></div>
+
+  <br />
+  <a href="index.html">← Back to Home</a>
+
+  <script src="gallery.js"></script>
 </body>
 </html>
