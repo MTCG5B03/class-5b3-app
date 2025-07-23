@@ -21,6 +21,29 @@
       font-weight: bold;
     }
 
+    .navbar {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      background-color: rgba(255, 255, 255, 0.3);
+      padding: 0.5rem;
+    }
+
+    .navbar button {
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 10px;
+      background-color: #ffffffaa;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .navbar button:hover {
+      background-color: #fff;
+    }
+
     .members {
       display: flex;
       flex-wrap: wrap;
@@ -35,7 +58,7 @@
       border-radius: 15px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
-      width: 200px;
+      width: 250px;
       text-align: center;
     }
 
@@ -63,6 +86,39 @@
     .girl {
       background-color: #e91e63;
     }
+
+    .comment-box {
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .comment-box textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 0.5rem;
+      resize: none;
+    }
+
+    .comment-box button {
+      margin-top: 0.5rem;
+      padding: 0.3rem 0.8rem;
+      background-color: #333;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .comment-box button:hover {
+      background-color: #555;
+    }
+
+    .comments-list {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #333;
+    }
   </style>
 </head>
 <body>
@@ -70,33 +126,57 @@
     Welcome to Class 5B3!
   </header>
 
+  <div class="navbar">
+    <button>Class Members</button>
+    <button>Class Gallery</button>
+  </div>
+
   <section class="members">
-    <div class="card"><h2>An Huy <span class="tag boy">Boy</span></h2><p>Chess champion and genius ♟️🧠</p></div>
-    <div class="card"><h2>Huy Long <span class="tag boy">Boy</span></h2><p>Giveaway buddy, tons of cash, Roblox pro 🎮</p></div>
-    <div class="card"><h2>Gia Bách <span class="tag boy">Boy</span></h2><p>Always vibing, super cool Minecraft gamer 🕹️😎</p></div>
-    <div class="card"><h2>Minh Châu <span class="tag girl">Girl</span></h2><p>Queen of M4FI0S0 and FORSAKEN 🎩💅🏻</p></div>
-    <div class="card"><h2>Le Vy <span class="tag girl">Girl</span></h2><p>Big brain girl, Mr. Patrick's favorite 📐😂</p></div>
-    <div class="card"><h2>Ngoc Minh <span class="tag girl">Girl</span></h2><p>Artistic genius drawing boss 🎨✨</p></div>
-    <div class="card"><h2>Quang Anh <span class="tag boy">Boy</span></h2><p>Crazy dude about cars and motorbikes 🚘🏍️</p></div>
-    <div class="card"><h2>Gia Bao <span class="tag boy">Boy</span></h2><p>Act first, think later 🤚🏻</p></div>
-    <div class="card"><h2>Nhat Minh <span class="tag boy">Boy</span></h2><p>Determined balls of steel guy 🤘🏻</p></div>
-    <div class="card"><h2>Minh Thanh <span class="tag boy">Boy</span></h2><p>Firecracker of brain, throw hands daily 👊🏻🤯🧨</p></div>
-    <div class="card"><h2>Le Minh <span class="tag boy">Boy</span></h2><p>Always messes up with projects 📑</p></div>
-    <div class="card"><h2>Nhat Nam <span class="tag boy">Boy</span></h2><p>Invites people to hang over regularly ❤️‍🔥</p></div>
-    <div class="card"><h2>Phuc Quang <span class="tag boy">Boy</span></h2><p>Trend to the bone, original to none 🦴🏏</p></div>
-    <div class="card"><h2>Quang Thanh <span class="tag boy">Boy</span></h2><p>Tired eyes and hacker hands 👁️👨🏻‍💻</p></div>
-    <div class="card"><h2>Ta Khoa <span class="tag boy">Boy</span></h2><p>Always the Valorant vibes ☠️🔫</p></div>
-    <div class="card"><h2>Minh Khoi <span class="tag boy">Boy</span></h2><p>Dumbo idiot who once can't do 3 × 9 🫠</p></div>
-    <div class="card"><h2>Tien Dung <span class="tag boy">Boy</span></h2><p>Always energetic AF, always fueled up 🔥🔥</p></div>
-    <div class="card"><h2>Gia Kien <span class="tag boy">Boy</span></h2><p>Pro scammer and footballer ⚽ 🥅</p></div>
-    <div class="card"><h2>Bao An <span class="tag girl">Girl</span></h2><p>Rich girl with tons of food 💵💰💰💰</p></div>
-    <div class="card"><h2>Diep Anh <span class="tag girl">Girl</span></h2><p>The teasing target (every time) 🥲</p></div>
-    <div class="card"><h2>Tram Anh <span class="tag girl">Girl</span></h2><p>Draws stuff in lessons 👩🏻‍🏫📃</p></div>
-    <div class="card"><h2>Minh Ngoc <span class="tag girl">Girl</span></h2><p>Raps English everywhere 🗣️</p></div>
-    <div class="card"><h2>Lan Vy <span class="tag girl">Girl</span></h2><p>Always draws Kimetsu no Yaiba pictures (sick) ✏️</p></div>
-    <div class="card"><h2>Ha Vy <span class="tag girl">Girl</span></h2><p>Jack of all trades, master of none 🃏</p></div>
-    <div class="card"><h2>Bao Han <span class="tag girl">Girl</span></h2><p>Sleep anywhere, anytime 💤😴</p></div>
-    <div class="card"><h2>Y Li <span class="tag girl">Girl</span></h2><p>Class' manga storage 📘📕</p></div>
+    <!-- === Start of cards === -->
+    <!-- You can copy/paste one template and change content easily -->
+    <div class="card"><h2>An Huy <span class="tag boy">Boy</span></h2><p>Chess champion and genius ♟️🧠</p><div class="comment-box"><textarea rows="2" placeholder="Say something about An Huy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Huy Long <span class="tag boy">Boy</span></h2><p>Giveaway buddy, tons of cash, Roblox pro 🎮</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Huy Long..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Gia Bách <span class="tag boy">Boy</span></h2><p>Always vibing, super cool Minecraft gamer 🕹️😎</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Gia Bách..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Minh Châu <span class="tag girl">Girl</span></h2><p>Queen of M4FI0S0 and FORSAKEN 🎩💅🏻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Châu..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Le Vy <span class="tag girl">Girl</span></h2><p>Big brain girl, Mr. Patrick's favorite 📐😂</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Le Vy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Ngoc Minh <span class="tag girl">Girl</span></h2><p>Artistic genius drawing boss 🎨✨</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Ngoc Minh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Quang Anh <span class="tag boy">Boy</span></h2><p>Crazy dude about cars and motorbikes 🚘🏍️</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Quang Anh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Gia Bao <span class="tag boy">Boy</span></h2><p>Act first, think later 🤚🏻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Gia Bao..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Nhat Minh <span class="tag boy">Boy</span></h2><p>Determined balls of steel guy 🤘🏻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Nhat Minh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Minh Thanh <span class="tag boy">Boy</span></h2><p>Firecracker of brain, throw hands daily 👊🏻🤯🧨</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Thanh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Le Minh <span class="tag boy">Boy</span></h2><p>Always messes up with projects 📑</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Le Minh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Nhat Nam <span class="tag boy">Boy</span></h2><p>Invites people to hang over regularly ❤️‍🔥</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Nhat Nam..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Phuc Quang <span class="tag boy">Boy</span></h2><p>Trend to the bone, original to none 🦴🏏</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Phuc Quang..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Quang Thanh <span class="tag boy">Boy</span></h2><p>Tired eyes and hacker hands 👁️👨🏻‍💻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Quang Thanh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Ta Khoa <span class="tag boy">Boy</span></h2><p>Always the Valorant vibes ☠️🔫</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Ta Khoa..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Minh Khoi <span class="tag boy">Boy</span></h2><p>Dumbo idiot who once can't do 3 × 9 🫠</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Khoi..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Tien Dung <span class="tag boy">Boy</span></h2><p>Always energetic AF, always fueled up 🔥🔥</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Tien Dung..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Gia Kien <span class="tag boy">Boy</span></h2><p>Pro scammer and footballer ⚽ 🥅</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Gia Kien..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Bao An <span class="tag girl">Girl</span></h2><p>Rich girl with tons of food 💵💰💰💰</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Bao An..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Diep Anh <span class="tag girl">Girl</span></h2><p>The teasing target (every time) 🥲</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Diep Anh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Tram Anh <span class="tag girl">Girl</span></h2><p>Draws stuff in lessons 👩🏻‍🏫📃</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Tram Anh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Minh Ngoc <span class="tag girl">Girl</span></h2><p>Raps English everywhere 🗣️</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Ngoc..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Lan Vy <span class="tag girl">Girl</span></h2><p>Always draws Kimetsu no Yaiba pictures (sick) ✏️</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Lan Vy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Ha Vy <span class="tag girl">Girl</span></h2><p>Jack of all trades, master of none 🃏</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Ha Vy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Bao Han <span class="tag girl">Girl</span></h2><p>Sleep anywhere, anytime 💤😴</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Bao Han..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <div class="card"><h2>Y Li <span class="tag girl">Girl</span></h2><p>Class' manga storage 📘📕</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Y Li..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
+    <!-- === End of cards === -->
   </section>
+
+  <script>
+    document.querySelectorAll('.comment-box button').forEach(button => {
+      button.addEventListener('click', () => {
+        const box = button.parentElement;
+        const input = box.querySelector('textarea');
+        const list = box.querySelector('.comments-list');
+        if (input.value.trim() !== '') {
+          const newComment = document.createElement('div');
+          newComment.textContent = "• " + input.value;
+          list.appendChild(newComment);
+          input.value = '';
+        }
+      });
+    });
+  </script>
 </body>
 </html>
