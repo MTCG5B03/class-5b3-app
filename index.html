@@ -3,20 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Class 5B3 Members</title>
+  <title>Class 5B3 - The Coolest Crew</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Comic Sans MS', 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      background: linear-gradient(135deg, #ff6b6b, #ffe066);
+      color: #333;
     }
 
     nav {
       display: flex;
       justify-content: center;
       gap: 1.5rem;
-      background-color: rgba(255, 255, 255, 0.3);
+      background-color: rgba(255, 255, 255, 0.4);
       padding: 1rem;
       font-size: 1.2rem;
       font-weight: bold;
@@ -25,177 +26,84 @@
     nav a {
       color: #333;
       text-decoration: none;
-      background-color: white;
+      background-color: #fff;
       padding: 0.5rem 1rem;
       border-radius: 10px;
       transition: background-color 0.3s ease;
     }
 
     nav a:hover {
-      background-color: #ffe5ec;
+      background-color: #ffcccb;
     }
 
-    .members {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.85);
-      margin: 1rem;
-      padding: 1.5rem;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
-      width: 280px;
+    .intro {
       text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.9);
+      margin: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .card:hover {
-      transform: scale(1.03);
+    .intro h1 {
+      font-size: 2.5rem;
+      color: #ff3366;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     }
 
-    .tag {
-      font-size: 0.8rem;
-      padding: 0.2rem 0.6rem;
-      border-radius: 8px;
-      margin-left: 0.5rem;
+    .intro p {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
     }
 
-    .boy {
-      background-color: #a0c4ff;
-      color: #003366;
+    .photo-placeholder {
+      width: 80%;
+      max-width: 800px;
+      height: 300px;
+      background: #ddd url('https://via.placeholder.com/800x300?text=Class+5B3+Squad+Photo') no-repeat center;
+      background-size: cover;
+      margin: 1rem auto;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
-    .girl {
-      background-color: #ffc6e0;
+    .awesome-section {
+      text-align: center;
+      padding: 1rem;
+      font-size: 1.1rem;
+      font-style: italic;
       color: #660033;
-    }
-
-    .comment-box {
-      margin-top: 1rem;
-    }
-
-    .comment-box textarea {
-      width: 100%;
-      border-radius: 8px;
-      padding: 0.5rem;
-      resize: none;
-      border: 1px solid #ccc;
-      margin-bottom: 0.5rem;
-    }
-
-    .comment-box button {
-      padding: 0.4rem 1rem;
-      border: none;
-      background-color: #ff758f;
-      color: white;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-
-    .comment-box button:hover {
-      background-color: #ff4f7b;
-    }
-
-    .comments-list {
-      margin-top: 0.5rem;
-      text-align: left;
-      font-size: 0.9rem;
-    }
-
-    .comment-item {
-      background-color: #fff0f5;
-      border-left: 3px solid #ff4f7b;
-      padding: 0.3rem 0.6rem;
-      margin-bottom: 0.3rem;
-      border-radius: 4px;
+      margin: 2rem;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
     }
   </style>
 </head>
 <body>
+  <!-- 🌐 Navigation bar -->
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="class.html">👥 Class Members</a>
+    <a href="gallery.html">📸 Class Gallery</a>
+    <a href="couples.html">💘 Confirmed Couples</a>
+  </nav>
 
-<!-- 🌐 Navigation bar -->
-<nav>
-  <a href="index.html">🏠 Home</a>
-  <a href="class.html">👥 Class Members</a>
-  <a href="gallery.html">📸 Class Gallery</a>
-  <a href="couples.html">💘 Confirmed Couples</a>
-</nav>
-<h1 style="margin-top: 2rem; color: #fff; text-shadow: 2px 2px 5px #000;">Class 5B3 Members</h1>
+  <!-- 🌟 Intro Section -->
+  <section class="intro">
+    <h1>🌟 Welcome to Class 5B3!</h1>
+    <p>A place where laughter echoes, friendships grow, and memories are made.</p>
+    <p>🧑‍🏫 <strong>Teacher:</strong> Mr. Patrick (yep… you know him)</p>
+    <p>📚 <strong>Class:</strong> 5B3, the coolest crew in school</p>
+    <p>🎉 <strong>Specialties:</strong> Genius kids, Roblox legends, Meme kings, Chess champs, and a lil’ bit of chaos</p>
+  </section>
 
-<!-- 👥 Class Members Section -->
-<section class="members" id="members-section">
- <div class="card"><h2>An Huy <span class="tag boy">Boy</span></h2><p>Chess champion and genius ♟️🧠</p><div class="comment-box"><textarea rows="2" placeholder="Say something about An Huy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Huy Long <span class="tag boy">Boy</span></h2><p>Giveaway buddy, tons of cash, Roblox pro 🎮</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Huy Long..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Gia Bách <span class="tag boy">Boy</span></h2><p>Always vibing, super cool Minecraft gamer 🕹️😎</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Gia Bách..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Minh Châu <span class="tag girl">Girl</span></h2><p>Queen of M4FI0S0 and FORSAKEN 🎩💅🏻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Châu..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Le Vy <span class="tag girl">Girl</span></h2><p>Big brain girl, Mr. Patrick's favorite 📐😂</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Le Vy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Ngoc Minh <span class="tag girl">Girl</span></h2><p>Artistic genius drawing boss 🎨✨</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Ngoc Minh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Quang Anh <span class="tag boy">Boy</span></h2><p>Crazy dude about cars and motorbikes 🚘🏍️</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Quang Anh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Gia Bao <span class="tag boy">Boy</span></h2><p>Act first, think later 🤚🏻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Gia Bao..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Nhat Minh <span class="tag boy">Boy</span></h2><p>Determined balls of steel guy 🤘🏻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Nhat Minh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Minh Thanh <span class="tag boy">Boy</span></h2><p>Firecracker of brain, throw hands daily 👊🏻🤯🧨</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Thanh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Le Minh <span class="tag boy">Boy</span></h2><p>Always messes up with projects 📑</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Le Minh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Nhat Nam <span class="tag boy">Boy</span></h2><p>Invites people to hang over regularly ❤️‍🔥</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Nhat Nam..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Phuc Quang <span class="tag boy">Boy</span></h2><p>Trend to the bone, original to none 🦴🏏</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Phuc Quang..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Quang Thanh <span class="tag boy">Boy</span></h2><p>Tired eyes and hacker hands 👁️👨🏻‍💻</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Quang Thanh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Ta Khoa <span class="tag boy">Boy</span></h2><p>Always the Valorant vibes ☠️🔫</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Ta Khoa..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Minh Khoi <span class="tag boy">Boy</span></h2><p>Dumbo idiot who once can't do 3 × 9 🫠</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Khoi..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Tien Dung <span class="tag boy">Boy</span></h2><p>Always energetic AF, always fueled up 🔥🔥</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Tien Dung..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Gia Kien <span class="tag boy">Boy</span></h2><p>Pro scammer and footballer ⚽ 🥅</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Gia Kien..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Bao An <span class="tag girl">Girl</span></h2><p>Rich girl with tons of food 💵💰💰💰</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Bao An..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Diep Anh <span class="tag girl">Girl</span></h2><p>The teasing target (every time) 🥲</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Diep Anh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Tram Anh <span class="tag girl">Girl</span></h2><p>Draws stuff in lessons 👩🏻‍🏫📃</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Tram Anh..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Minh Ngoc <span class="tag girl">Girl</span></h2><p>Raps English everywhere 🗣️</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Minh Ngoc..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Lan Vy <span class="tag girl">Girl</span></h2><p>Always draws Kimetsu no Yaiba pictures (sick) ✏️</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Lan Vy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Ha Vy <span class="tag girl">Girl</span></h2><p>Jack of all trades, master of none 🃏</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Ha Vy..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Bao Han <span class="tag girl">Girl</span></h2><p>Sleep anywhere, anytime 💤😴</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Bao Han..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-    <div class="card"><h2>Y Li <span class="tag girl">Girl</span></h2><p>Class' manga storage 📘📕</p><div class="comment-box"><textarea rows="2" placeholder="Say something about Y Li..."></textarea><button>Add Comment</button><div class="comments-list"></div></div></div>
-</section>
+  <!-- 📸 Class Photo Placeholder -->
+  <div class="photo-placeholder"></div>
 
-<!-- 💬 Commenting functionality -->
-<script>
-  document.querySelectorAll(".card").forEach((card) => {
-    const name = card.querySelector("h2").innerText.trim();
-    const textarea = card.querySelector("textarea");
-    const button = card.querySelector("button");
-    const commentList = card.querySelector(".comments-list");
-
-    const saved = localStorage.getItem("comments_" + name);
-    if (saved) {
-      JSON.parse(saved).forEach(({ user, text }) => {
-        const div = document.createElement("div");
-        div.className = "comment-item";
-        div.textContent = `${user}: ${text}`;
-        commentList.appendChild(div);
-      });
-    }
-
-    button.addEventListener("click", () => {
-      const text = textarea.value.trim();
-      if (text) {
-        const username = prompt("Enter your name:");
-        if (!username) return;
-
-        const div = document.createElement("div");
-        div.className = "comment-item";
-        div.textContent = `${username}: ${text}`;
-        commentList.appendChild(div);
-
-        const existing = localStorage.getItem("comments_" + name);
-        const comments = existing ? JSON.parse(existing) : [];
-        comments.push({ user: username, text: text });
-        localStorage.setItem("comments_" + name, JSON.stringify(comments));
-
-        textarea.value = "";
-      }
-    });
-  });
-</script>
-
-
+  <!-- 💬 What Makes Us Awesome? -->
+  <section class="awesome-section">
+    <h2>💬 What Makes Us Awesome?</h2>
+    <p>We’re more than a class. We’re a family of dreamers, pranksters, and future legends. Whether it's job fairs or lunch battles, 5B3 never backs down!</p>
+  </section>
 </body>
 </html>
