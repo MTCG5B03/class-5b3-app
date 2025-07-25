@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Class 5B3 Teachers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #ff6b6b, #ffe066);
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      background-color: rgba(255, 255, 255, 0.4);
+      padding: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: #333;
+      text-decoration: none;
+      background-color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav a:hover {
+      background-color: #ffcccb;
+    }
+
+    .teachers {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.9);
+      margin: 1rem;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+      width: 280px;
+      text-align: center;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .more-info {
+      display: none;
+      margin-top: 10px;
+      background-color: #fff8dc;
+      padding: 8px;
+      border-radius: 10px;
+      border: 1px dashed #ff3366;
+    }
+
+    .expand-btn {
+      padding: 0.4rem 1rem;
+      border: none;
+      background-color: #ff758f;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 0.5rem 0;
+    }
+
+    .expand-btn:hover {
+      background-color: #ff4f7b;
+    }
+
+    .save-btn {
+      padding: 0.4rem 1rem;
+      border: none;
+      background-color: #66b3ff;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 0.5rem;
+    }
+
+    .save-btn:hover {
+      background-color: #3399ff;
+    }
+
+    .comment-box {
+      margin-top: 1rem;
+    }
+
+    .comment-box textarea {
+      width: 100%;
+      border-radius: 8px;
+      padding: 0.5rem;
+      resize: none;
+      border: 1px solid #ccc;
+      margin-bottom: 0.5rem;
+    }
+
+    .comment-box button {
+      padding: 0.4rem 1rem;
+      border: none;
+      background-color: #ff758f;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .comment-box button:hover {
+      background-color: #ff4f7b;
+    }
+
+    .comments-list {
+      margin-top: 0.5rem;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .comment-item {
+      background-color: #fff0f5;
+      border-left: 3px solid #ff4f7b;
+      padding: 0.3rem 0.6rem;
+      margin-bottom: 0.3rem;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 🌐 Navigation bar -->
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="class.html">👥 Class Members</a>
+    <a href="gallery.html">📸 Class Gallery</a>
+    <a href="couples.html">💘 Confirmed Couples</a>
+  </nav>
+  <h1 style="margin-top: 2rem; color: #fff; text-shadow: 2px 2px 5px #000;">Class 5B3 Teachers</h1>
+
+  <!-- 👨‍🏫 Teachers Section -->
+  <section class="teachers" id="teachers-section">
+    <div class="card">
+      <h2>Mr Patrick Jonathan Palmer</h2>
+      <p>Homeroom Teacher 🧑‍🏫</p>
+      <button class="expand-btn">Click to see more</button>
+      <div class="more-info" contenteditable="true">(Write more stuff about Mr Patrick here...)<br><button class="save-btn">Save</button></div>
+      <div class="comment-box">
+        <textarea rows="2" placeholder="Say something about Mr Patrick..."></textarea>
+        <button>Add Comment</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Ms Quynh</h2>
+      <p>Vietnamese Teacher 🇻🇳</p>
+      <button class="expand-btn">Click to see more</button>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Quynh here...)<br><button class="save-btn">Save</button></div>
+      <div class="comment-box">
+        <textarea rows="2" placeholder="Say something about Ms Quynh..."></textarea>
+        <button>Add Comment</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Ms Hoa</h2>
+      <p>Vietnamese Teacher 🇻🇳</p>
+      <button class="expand-btn">Click to see more</button>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Hoa here...)<br><button class="save-btn">Save</button></div>
+      <div class="comment-box">
+        <textarea rows="2" placeholder="Say something about Ms Hoa..."></textarea>
+        <button>Add Comment</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Ms Elaine Cheung</h2>
+      <p>Science Teacher 🔬</p>
+      <button class="expand-btn">Click to see more</button>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Elaine here...)<br><button class="save-btn">Save</button></div>
+      <div class="comment-box">
+        <textarea rows="2" placeholder="Say something about Ms Elaine..."></textarea>
+        <button>Add Comment</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Mr Stephen James Kattri</h2>
+      <p>ICT Teacher 💻</p>
+      <button class="expand-btn">Click to see more</button>
+      <div class="more-info" contenteditable="true">(Write more stuff about Mr Stephen here...)<br><button class="save-btn">Save</button></div>
+      <div class="comment-box">
+        <textarea rows="2" placeholder="Say something about Mr Stephen..."></textarea>
+        <button>Add Comment</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Mr Duy</h2>
+      <p>PE Teacher 🏃‍♂️</p>
+      <button class="expand-btn">Click to see more</button>
+      <div class="more-info" contenteditable="true">(Write more stuff about Mr Duy here...)<br><button class="save-btn">Save</button></div>
+      <div class="comment-box">
+        <textarea rows="2" placeholder="Say something about Mr Duy..."></textarea>
+        <button>Add Comment</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+    <div class="card">
+      <h2>Ms Mai</h2>
+      <p>Music Teacher 🎶</p>
+      <button class="expand-btn">Click to see more</button>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Mai here...)<br><button class="save-btn">Save</button></div>
+      <div class="comment-box">
+        <textarea rows="2" placeholder="Say something about Ms Mai..."></textarea>
+        <button>Add Comment</button>
+        <div class="comments-list"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💬 Commenting and Saving Functionality -->
+  <script>
+    // Commenting functionality
+    document.querySelectorAll(".card").forEach((card) => {
+      const name = card.querySelector("h2").innerText.trim();
+      const textarea = card.querySelector("textarea");
+      const commentButton = card.querySelector(".comment-box button");
+      const commentList = card.querySelector(".comments-list");
+
+      // Load saved comments
+      const savedComments = localStorage.getItem("comments_" + name);
+      if (savedComments) {
+        JSON.parse(savedComments).forEach(({ user, text }) => {
+          const div = document.createElement("div");
+          div.className = "comment-item";
+          div.textContent = `${user}: ${text}`;
+          commentList.appendChild(div);
+        });
+      }
+
+      // Add comment
+      commentButton.addEventListener("click", () => {
+        const text = textarea.value.trim();
+        if (text) {
+          const username = prompt("Enter your name:");
+          if (!username) return;
+
+          const div = document.createElement("div");
+          div.className = "comment-item";
+          div.textContent = `${username}: ${text}`;
+          commentList.appendChild(div);
+
+          const existing = localStorage.getItem("comments_" + name);
+          const comments = existing ? JSON.parse(existing) : [];
+          comments.push({ user: username, text: text });
+          localStorage.setItem("comments_" + name, JSON.stringify(comments));
+
+          textarea.value = "";
+        }
+      });
+    });
+
+    // Expand button functionality
+    document.addEventListener("DOMContentLoaded", function () {
+      const buttons = document.querySelectorAll('.expand-btn');
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const moreInfo = this.nextElementSibling;
+          if (moreInfo.style.display === "block") {
+            moreInfo.style.display = "none";
+            btn.textContent = "Click to see more";
+          } else {
+            moreInfo.style.display = "block";
+            btn.textContent = "Click to hide";
+          }
+        });
+      });
+    });
+
+    // Save more-info functionality
+    document.querySelectorAll(".card").forEach((card) => {
+      const name = card.querySelector("h2").innerText.trim();
+      const moreInfo = card.querySelector(".more-info");
+      const saveButton = card.querySelector(".save-btn");
+
+      // Load saved more-info content
+      const savedInfo = localStorage.getItem("more_info_" + name);
+      if (savedInfo) {
+        moreInfo.innerHTML = savedInfo + '<br><button class="save-btn">Save</button>';
+      }
+
+      // Save more-info content
+      saveButton.addEventListener("click", () => {
+        const content = moreInfo.innerHTML.replace(/<br><button class="save-btn">Save<\/button>$/, '');
+        localStorage.setItem("more_info_" + name, content);
+        alert("Info saved for " + name + "!");
+      });
+    });
+  </script>
+</body>
+</html>
