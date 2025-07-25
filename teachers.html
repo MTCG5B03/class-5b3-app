@@ -37,12 +37,12 @@
     }
 
     .tribute-btn {
+      text-decoration: none;
+      display: inline-block;
       padding: 0.5rem 1rem;
-      border: none;
       background-color: #ff3366;
       color: white;
       border-radius: 10px;
-      cursor: pointer;
       font-size: 1.2rem;
       font-weight: bold;
       transition: background-color 0.3s ease;
@@ -98,11 +98,7 @@
       padding: 8px;
       border-radius: 10px;
       border: 1px dashed #ff3366;
-    }
-
-    .editable {
       min-height: 50px;
-      outline: none;
     }
 
     .expand-btn {
@@ -181,7 +177,7 @@
     <a href="class.html">👥 Class Members</a>
     <a href="gallery.html">📸 Class Gallery</a>
     <a href="couples.html">💘 Confirmed Couples</a>
-    <button class="tribute-btn" onclick="window.location.href='index.html'">Tribute for Teachers 🫡</button>
+    <a class="tribute-btn" href="teachers.html">Tribute for Teachers 🫡</a>
   </nav>
   <h1 style="margin-top: 2rem; color: #fff; text-shadow: 2px 2px 5px #000;">Class 5B3 Teachers</h1>
 
@@ -191,10 +187,7 @@
       <h2>Mr Patrick Jonathan Palmer <span class="tag man">Man</span></h2>
       <p>Homeroom Teacher 🧑‍🏫</p>
       <button class="expand-btn">Click to see more</button>
-      <div class="more-info">
-        <div class="editable" contenteditable="true">(Write more stuff about Mr Patrick here...)</div>
-        <button class="save-btn">Save</button>
-      </div>
+      <div class="more-info" contenteditable="true">(Write more stuff about Mr Patrick here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Mr Patrick..."></textarea>
         <button>Add Comment</button>
@@ -205,10 +198,7 @@
       <h2>Ms Quynh <span class="tag woman">Woman</span></h2>
       <p>Vietnamese Teacher 🇻🇳</p>
       <button class="expand-btn">Click to see more</button>
-      <div class="more-info">
-        <div class="editable" contenteditable="true">(Write more stuff about Ms Quynh here...)</div>
-        <button class="save-btn">Save</button>
-      </div>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Quynh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Ms Quynh..."></textarea>
         <button>Add Comment</button>
@@ -219,10 +209,7 @@
       <h2>Ms Hoa <span class="tag woman">Woman</span></h2>
       <p>Vietnamese Teacher 🇻🇳</p>
       <button class="expand-btn">Click to see more</button>
-      <div class="more-info">
-        <div class="editable" contenteditable="true">(Write more stuff about Ms Hoa here...)</div>
-        <button class="save-btn">Save</button>
-      </div>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Hoa here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Ms Hoa..."></textarea>
         <button>Add Comment</button>
@@ -233,10 +220,7 @@
       <h2>Ms Elaine Cheung <span class="tag woman">Woman</span></h2>
       <p>Science Teacher 🔬</p>
       <button class="expand-btn">Click to see more</button>
-      <div class="more-info">
-        <div class="editable" contenteditable="true">(Write more stuff about Ms Elaine here...)</div>
-        <button class="save-btn">Save</button>
-      </div>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Elaine here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Ms Elaine..."></textarea>
         <button>Add Comment</button>
@@ -247,10 +231,7 @@
       <h2>Mr Stephen James Kattri <span class="tag man">Man</span></h2>
       <p>ICT Teacher 💻</p>
       <button class="expand-btn">Click to see more</button>
-      <div class="more-info">
-        <div class="editable" contenteditable="true">(Write more stuff about Mr Stephen here...)</div>
-        <button class="save-btn">Save</button>
-      </div>
+      <div class="more-info" contenteditable="true">(Write more stuff about Mr Stephen here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Mr Stephen..."></textarea>
         <button>Add Comment</button>
@@ -261,10 +242,7 @@
       <h2>Mr Duy <span class="tag man">Man</span></h2>
       <p>PE Teacher 🏃‍♂️</p>
       <button class="expand-btn">Click to see more</button>
-      <div class="more-info">
-        <div class="editable" contenteditable="true">(Write more stuff about Mr Duy here...)</div>
-        <button class="save-btn">Save</button>
-      </div>
+      <div class="more-info" contenteditable="true">(Write more stuff about Mr Duy here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Mr Duy..."></textarea>
         <button>Add Comment</button>
@@ -275,10 +253,7 @@
       <h2>Ms Mai <span class="tag woman">Woman</span></h2>
       <p>Music Teacher 🎶</p>
       <button class="expand-btn">Click to see more</button>
-      <div class="more-info">
-        <div class="editable" contenteditable="true">(Write more stuff about Ms Mai here...)</div>
-        <button class="save-btn">Save</button>
-      </div>
+      <div class="more-info" contenteditable="true">(Write more stuff about Ms Mai here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Ms Mai..."></textarea>
         <button>Add Comment</button>
@@ -290,17 +265,36 @@
   <!-- 💬 Commenting and Saving Functionality -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
+      // 🔁 Setup for each teacher card
       document.querySelectorAll(".card").forEach((card) => {
         const name = card.querySelector("h2").innerText.trim();
         const textarea = card.querySelector("textarea");
         const commentButton = card.querySelector(".comment-box button");
         const commentList = card.querySelector(".comments-list");
         const moreInfo = card.querySelector(".more-info");
-        const editable = card.querySelector(".editable");
-        const saveButton = card.querySelector(".save-btn");
-        const expandButton = card.querySelector(".expand-btn");
 
-        // Load saved comments
+        // ✅ LOAD SAVED INFO (if any)
+        const savedInfo = localStorage.getItem("more_info_" + name);
+        if (savedInfo) {
+          moreInfo.innerHTML = savedInfo;
+        }
+
+        // 🔘 ADD SAVE BUTTON (always)
+        const saveBtn = document.createElement("button");
+        saveBtn.className = "save-btn";
+        saveBtn.textContent = "Save";
+        moreInfo.appendChild(document.createElement("br"));
+        moreInfo.appendChild(saveBtn);
+
+        // 💾 SAVE INFO when clicked
+        saveBtn.addEventListener("click", () => {
+          // Save everything *except* the Save button
+          const content = moreInfo.innerHTML.replace(/<br><button.*<\/button>/, '');
+          localStorage.setItem("more_info_" + name, content);
+          alert("Info saved for " + name + "!");
+        });
+
+        // 💬 LOAD SAVED COMMENTS
         const savedComments = localStorage.getItem("comments_" + name);
         if (savedComments) {
           JSON.parse(savedComments).forEach(({ user, text }) => {
@@ -311,7 +305,7 @@
           });
         }
 
-        // Add comment
+        // 💬 ADD COMMENT
         commentButton.addEventListener("click", () => {
           const text = textarea.value.trim();
           if (text) {
@@ -331,28 +325,19 @@
             textarea.value = "";
           }
         });
+      });
 
-        // Load saved more-info content
-        const savedInfo = localStorage.getItem("more_info_" + name);
-        if (savedInfo) {
-          editable.innerHTML = savedInfo;
-        }
-
-        // Save more-info content
-        saveButton.addEventListener("click", () => {
-          const content = editable.innerHTML.trim();
-          localStorage.setItem("more_info_" + name, content);
-          alert("Info saved for " + name + "!");
-        });
-
-        // Expand button functionality
-        expandButton.addEventListener("click", () => {
+      // 🔁 Expand buttons
+      const buttons = document.querySelectorAll('.expand-btn');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const moreInfo = this.nextElementSibling;
           if (moreInfo.style.display === "block") {
             moreInfo.style.display = "none";
-            expandButton.textContent = "Click to see more";
+            btn.textContent = "Click to see more";
           } else {
             moreInfo.style.display = "block";
-            expandButton.textContent = "Click to hide";
+            btn.textContent = "Click to hide";
           }
         });
       });
