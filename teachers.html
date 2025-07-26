@@ -74,6 +74,16 @@
       transform: scale(1.03);
     }
 
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 10px;
+      display: block;
+      border: 2px solid #ccc;
+    }
+
     .tag {
       font-size: 0.8rem;
       padding: 0.2rem 0.6rem;
@@ -184,6 +194,7 @@
   <!-- 👨‍🏫 Teachers Section -->
   <section class="teachers" id="teachers-section">
     <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Mr Patrick profile picture" class="profile-pic">
       <h2>Mr Patrick Jonathan Palmer <span class="tag man">Man</span></h2>
       <p>Homeroom Teacher 🧑‍🏫</p>
       <button class="expand-btn">Click to see more</button>
@@ -195,6 +206,7 @@
       </div>
     </div>
     <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Ms Quynh profile picture" class="profile-pic">
       <h2>Ms Quynh <span class="tag woman">Woman</span></h2>
       <p>Vietnamese Teacher 🇻🇳</p>
       <button class="expand-btn">Click to see more</button>
@@ -206,6 +218,7 @@
       </div>
     </div>
     <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Ms Hoa profile picture" class="profile-pic">
       <h2>Ms Hoa <span class="tag woman">Woman</span></h2>
       <p>Vietnamese Teacher 🇻🇳</p>
       <button class="expand-btn">Click to see more</button>
@@ -217,6 +230,7 @@
       </div>
     </div>
     <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Ms Elaine profile picture" class="profile-pic">
       <h2>Ms Elaine Cheung <span class="tag woman">Woman</span></h2>
       <p>Science Teacher 🔬</p>
       <button class="expand-btn">Click to see more</button>
@@ -228,6 +242,7 @@
       </div>
     </div>
     <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Mr Stephen profile picture" class="profile-pic">
       <h2>Mr Stephen James Kattri <span class="tag man">Man</span></h2>
       <p>ICT Teacher 💻</p>
       <button class="expand-btn">Click to see more</button>
@@ -239,6 +254,7 @@
       </div>
     </div>
     <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Mr Duy profile picture" class="profile-pic">
       <h2>Mr Duy <span class="tag man">Man</span></h2>
       <p>PE Teacher 🏃‍♂️</p>
       <button class="expand-btn">Click to see more</button>
@@ -250,6 +266,7 @@
       </div>
     </div>
     <div class="card">
+      <img src="https://via.placeholder.com/100" alt="Ms Mai profile picture" class="profile-pic">
       <h2>Ms Mai <span class="tag woman">Woman</span></h2>
       <p>Music Teacher 🎶</p>
       <button class="expand-btn">Click to see more</button>
@@ -267,11 +284,18 @@
     document.addEventListener("DOMContentLoaded", function () {
       // 🔁 Setup for each teacher card
       document.querySelectorAll(".card").forEach((card) => {
-        const name = card.querySelector("h2").innerText.trim();
+        const name = card.querySelector("h2")?.innerText.trim();
         const textarea = card.querySelector("textarea");
         const commentButton = card.querySelector(".comment-box button");
         const commentList = card.querySelector(".comments-list");
         const moreInfo = card.querySelector(".more-info");
+        const expandBtn = card.querySelector(".expand-btn");
+
+        // Skip if critical elements are missing
+        if (!name || !moreInfo || !expandBtn || !textarea || !commentButton || !commentList) {
+          console.warn(`Skipping card for ${name || 'unknown'} due to missing elements`);
+          return;
+        }
 
         // ✅ LOAD SAVED INFO (if any)
         const savedInfo = localStorage.getItem("more_info_" + name);
@@ -325,19 +349,15 @@
             textarea.value = "";
           }
         });
-      });
 
-      // 🔁 Expand buttons
-      const buttons = document.querySelectorAll('.expand-btn');
-      buttons.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          const moreInfo = this.nextElementSibling;
+        // 🔁 Expand button
+        expandBtn.addEventListener("click", () => {
           if (moreInfo.style.display === "block") {
             moreInfo.style.display = "none";
-            btn.textContent = "Click to see more";
+            expandBtn.textContent = "Click to see more";
           } else {
             moreInfo.style.display = "block";
-            btn.textContent = "Click to hide";
+            expandBtn.textContent = "Click to hide";
           }
         });
       });
