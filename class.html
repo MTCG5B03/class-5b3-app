@@ -179,10 +179,22 @@
       margin-bottom: 0.3rem;
       border-radius: 4px;
     }
+
+    #sync-status {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
   </style>
 </head>
 <body>
-  <!-- 🌐 Navigation bar -->
+  <div id="sync-status">Online</div>
+  <!-- Navigation bar -->
   <nav>
     <a href="index.html">🏠 Home</a>
     <a href="class.html">👥 Class Members</a>
@@ -192,7 +204,7 @@
   </nav>
   <h1 style="margin-top: 2rem; color: #fff; text-shadow: 2px 2px 5px #000;">Class 5B3 Members</h1>
 
-  <!-- 👥 Class Members Section -->
+  <!-- Class Members Section -->
   <section class="members" id="members-section">
     <div class="card">
       <img src="anhuy.png" alt="An Huy profile picture" class="profile-pic">
@@ -511,13 +523,13 @@
     5B3 STUDENTS ARE LEGENDS 🏆🎓🚀😎🔥
   </p>
 
-  <!-- 🔥 Firebase SDK -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-  <!-- 🛡️ DOMPurify for XSS prevention -->
+  <!-- DOMPurify for XSS prevention -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 
-  <!-- 💬 Commenting and Saving Functionality -->
+  <!-- Commenting and Saving Functionality -->
   <script>
     // Simple hash function for unique comment IDs
     function generateCommentId(user, text, timestamp) {
@@ -531,20 +543,31 @@
     }
 
     // Initialize Firebase
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    let db;
+    try {
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+      };
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.database();
+    } catch (error) {
+      console.error("Firebase initialization failed:", error);
+      alert("Failed to connect to the server. Comments will be saved locally and synced later.");
+    }
+
+    // Update sync status
+    const statusDiv = document.getElementById('sync-status');
+    window.addEventListener('offline', () => statusDiv.textContent = 'Offline');
+    window.addEventListener('online', () => statusDiv.textContent = 'Online');
 
     document.addEventListener("DOMContentLoaded", function () {
-      // 🔁 Setup for each member card
+      // Setup for each member card
       document.querySelectorAll(".card").forEach((card) => {
         const name = card.querySelector("h2")?.innerText.trim();
         const textarea = card.querySelector("textarea");
@@ -559,141 +582,153 @@
           return;
         }
 
-        // 🗄️ Local cache keys
+        // Local cache keys
         const infoKey = `more_info_${name.replace(/\s+/g, '_')}`;
         const commentsKey = `comments_${name.replace(/\s+/g, '_')}`;
 
-        // ✅ LOAD SAVED INFO (real-time or local)
-        db.ref(`more_info/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
-          const savedInfo = snapshot.val();
-          const localInfo = localStorage.getItem(infoKey);
-          if (savedInfo) {
-            moreInfo.innerHTML = savedInfo;
-            localStorage.setItem(infoKey, savedInfo); // Sync local
-          } else if (localInfo) {
-            moreInfo.innerHTML = localInfo; // Fallback to local
-          } else {
-            moreInfo.innerHTML = `(Write more stuff about ${name} here...)`;
-          }
-          // 🔘 ADD SAVE BUTTON (if not exists)
-          const existingBtn = moreInfo.querySelector(".save-btn");
-          if (!existingBtn) {
-            moreInfo.appendChild(document.createElement("br"));
-            const saveBtn = document.createElement("button");
-            saveBtn.className = "save-btn";
-            saveBtn.textContent = "Save";
-            moreInfo.appendChild(saveBtn);
+        // LOAD SAVED INFO (real-time or local)
+        if (db) {
+          db.ref(`more_info/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
+            const savedInfo = snapshot.val();
+            const localInfo = localStorage.getItem(infoKey);
+            if (savedInfo) {
+              moreInfo.innerHTML = savedInfo;
+              localStorage.setItem(infoKey, savedInfo); // Sync local
+            } else if (localInfo) {
+              moreInfo.innerHTML = localInfo; // Fallback to local
+            } else {
+              moreInfo.innerHTML = `(Write more stuff about ${name} here...)`;
+            }
+            // ADD SAVE BUTTON (if not exists)
+            const existingBtn = moreInfo.querySelector(".save-btn");
+            if (!existingBtn) {
+              moreInfo.appendChild(document.createElement("br"));
+              const saveBtn = document.createElement("button");
+              saveBtn.className = "save-btn";
+              saveBtn.textContent = "Save";
+              moreInfo.appendChild(saveBtn);
 
-            // 💾 SAVE INFO when clicked
-            saveBtn.addEventListener("click", () => {
-              const content = DOMPurify.sanitize(moreInfo.innerHTML.replace(/<br><button.*<\/button>/, ''));
-              if (!navigator.onLine) {
-                localStorage.setItem(infoKey, content);
-                alert(`Offline: Info saved locally for ${name}. Will sync when online.`);
-                return;
-              }
-              db.ref(`more_info/${name.replace(/\s+/g, '_')}`).set(content)
-                .then(() => {
-                  localStorage.setItem(infoKey, content); // Sync local
-                  alert(`Info synced to cloud for ${name}!`);
-                })
-                .catch((error) => {
-                  console.error(`Error saving info for ${name}:`, error);
-                  localStorage.setItem(infoKey, content); // Cache locally
-                  alert(`Failed to sync info for ${name}. Saved locally, try again later.`);
-                });
-            });
-          }
-        }, (error) => {
-          console.error(`Error loading info for ${name}:`, error);
-          const localInfo = localStorage.getItem(infoKey);
-          if (localInfo) {
-            moreInfo.innerHTML = localInfo; // Fallback
-          }
-        });
-
-        // 💬 LOAD SAVED COMMENTS (real-time or local)
-        db.ref(`comments/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
-          commentList.innerHTML = '';
-          const comments = snapshot.val();
-          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-          let commentArray = [];
-          if (comments) {
-            commentArray = Object.values(comments).sort((a, b) => a.timestamp - b.timestamp);
-            localStorage.setItem(commentsKey, JSON.stringify(commentArray)); // Sync local
-          } else if (localComments.length > 0) {
-            commentArray = localComments;
-          }
-          commentArray.forEach(({ user, text }) => {
-            const div = document.createElement("div");
-            div.className = "comment-item";
-            div.textContent = `${user}: ${text}`;
-            commentList.appendChild(div);
+              // SAVE INFO when clicked
+              saveBtn.addEventListener("click", () => {
+                const content = DOMPurify.sanitize(moreInfo.innerHTML.replace(/<br><button.*<\/button>/, ''));
+                if (!navigator.onLine || !db) {
+                  localStorage.setItem(infoKey, content);
+                  alert(`Offline or server issue: Info saved locally for ${name}. Will sync when online.`);
+                  return;
+                }
+                db.ref(`more_info/${name.replace(/\s+/g, '_')}`).set(content)
+                  .then(() => {
+                    localStorage.setItem(infoKey, content); // Sync local
+                    alert(`Info synced to cloud for ${name}!`);
+                  })
+                  .catch((error) => {
+                    console.error(`Error saving info for ${name}:`, error);
+                    localStorage.setItem(infoKey, content); // Cache locally
+                    alert(`Failed to sync info for ${name}. Saved locally, try again later.`);
+                  });
+              });
+            }
+          }, (error) => {
+            console.error(`Error loading info for ${name}:`, error);
+            const localInfo = localStorage.getItem(infoKey);
+            if (localInfo) {
+              moreInfo.innerHTML = localInfo; // Fallback
+            }
           });
-        }, (error) => {
-          console.error(`Error loading comments for ${name}:`, error);
-          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-          if (localComments.length > 0) {
-            localComments.forEach(({ user, text }) => {
+        } else {
+          const localInfo = localStorage.getItem(infoKey);
+          if (localInfo) moreInfo.innerHTML = localInfo;
+        }
+
+        // LOAD SAVED COMMENTS (real-time or local)
+        if (db) {
+          db.ref(`comments/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
+            commentList.innerHTML = '';
+            const comments = snapshot.val();
+            const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+            let commentArray = [];
+            if (comments) {
+              commentArray = Object.values(comments).sort((a, b) => a.timestamp - b.timestamp);
+              localStorage.setItem(commentsKey, JSON.stringify(commentArray)); // Sync local
+            } else if (localComments.length > 0) {
+              commentArray = localComments;
+            }
+            commentArray.forEach(({ user, text }) => {
               const div = document.createElement("div");
               div.className = "comment-item";
               div.textContent = `${user}: ${text}`;
               commentList.appendChild(div);
             });
-          }
-        });
-
-        // 💬 ADD COMMENT
-        commentButton.addEventListener("click", () => {
-          const text = textarea.value.trim();
-          if (text) {
-            const username = prompt("Enter your name:");
-            if (!username) return;
-            const timestamp = Date.now();
-            const commentId = generateCommentId(username, text, timestamp);
-            const comment = { id: commentId, user: username, text, timestamp };
-            if (!navigator.onLine) {
-              const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-              if (!localComments.some(c => c.id === commentId)) {
-                localComments.push(comment);
-                localStorage.setItem(commentsKey, JSON.stringify(localComments));
+          }, (error) => {
+            console.error(`Error loading comments for ${name}:`, error);
+            const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+            if (localComments.length > 0) {
+              localComments.forEach(({ user, text }) => {
                 const div = document.createElement("div");
                 div.className = "comment-item";
-                div.textContent = `${username}: ${text}`;
+                div.textContent = `${user}: ${text}`;
                 commentList.appendChild(div);
-                textarea.value = "";
-                alert(`Offline: Comment saved locally for ${name}. Will sync when online.`);
-              }
-              return;
-            }
-            db.ref(`comments/${name.replace(/\s+/g, '_')}/${commentId}`).set(comment)
-              .then(() => {
-                const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-                if (!localComments.some(c => c.id === commentId)) {
-                  localComments.push(comment);
-                  localStorage.setItem(commentsKey, JSON.stringify(localComments));
-                }
-                textarea.value = "";
-                alert(`Comment synced to cloud for ${name}!`);
-              })
-              .catch((error) => {
-                console.error(`Error adding comment for ${name}:`, error);
-                const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-                if (!localComments.some(c => c.id === commentId)) {
-                  localComments.push(comment);
-                  localStorage.setItem(commentsKey, JSON.stringify(localComments));
-                  const div = document.createElement("div");
-                  div.className = "comment-item";
-                  div.textContent = `${username}: ${text}`;
-                  commentList.appendChild(div);
-                  textarea.value = "";
-                  alert(`Failed to sync comment for ${name}. Saved locally, try again later.`);
-                }
               });
+            }
+          });
+        } else {
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+          localComments.forEach(({ user, text }) => {
+            const div = document.createElement("div");
+            div.className = "comment-item";
+            div.textContent = `${user}: ${text}`;
+            commentList.appendChild(div);
+          });
+        }
+
+        // ADD COMMENT
+        commentButton.addEventListener("click", () => {
+          const text = textarea.value.trim();
+          if (!text) {
+            alert("Please enter a comment!");
+            return;
           }
+          let username = prompt("Enter your name:");
+          if (!username || username.trim() === "") {
+            alert("Please enter a valid name!");
+            return;
+          }
+          username = username.trim();
+          const timestamp = Date.now();
+          const commentId = generateCommentId(username, text, timestamp);
+          const comment = { id: commentId, user: username, text, timestamp };
+
+          // Always update UI immediately
+          const div = document.createElement("div");
+          div.className = "comment-item";
+          div.textContent = `${username}: ${text}`;
+          commentList.appendChild(div);
+          textarea.value = "";
+
+          // Save to localStorage
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+          if (!localComments.some(c => c.id === commentId)) {
+            localComments.push(comment);
+            localStorage.setItem(commentsKey, JSON.stringify(localComments));
+          }
+
+          if (!navigator.onLine || !db) {
+            alert(`Offline or server issue: Comment saved locally for ${name}. Will sync when online.`);
+            return;
+          }
+
+          // Save to Firebase
+          db.ref(`comments/${name.replace(/\s+/g, '_')}/${commentId}`).set(comment)
+            .then(() => {
+              alert(`Comment synced to cloud for ${name}!`);
+            })
+            .catch((error) => {
+              console.error(`Error adding comment for ${name}:`, error);
+              alert(`Failed to sync comment for ${name}. Saved locally, try again later.`);
+            });
         });
 
-        // 🔁 Expand button
+        // Expand button
         expandBtn.addEventListener("click", () => {
           if (moreInfo.style.display === "block") {
             moreInfo.style.display = "none";
@@ -705,11 +740,12 @@
         });
       });
 
-      // 📡 Sync local data when back online
+      // Sync local data when back online
       window.addEventListener('online', () => {
+        statusDiv.textContent = 'Syncing...';
         document.querySelectorAll(".card").forEach((card) => {
           const name = card.querySelector("h2")?.innerText.trim();
-          if (!name) return;
+          if (!name || !db) return;
           const infoKey = `more_info_${name.replace(/\s+/g, '_')}`;
           const commentsKey = `comments_${name.replace(/\s+/g, '_')}`;
           const localInfo = localStorage.getItem(infoKey);
@@ -737,6 +773,7 @@
           }
         });
         alert('Back online! All local changes synced to cloud.');
+        statusDiv.textContent = 'Online';
       });
     });
   </script>
