@@ -190,10 +190,17 @@
       font-size: 0.9rem;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
+
+    .error-message {
+      color: #ff4f7b;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <div id="sync-status">Online</div>
+  <div id="sync-status">Checking...</div>
   <!-- Navigation bar -->
   <nav>
     <a href="index.html">🏠 Home</a>
@@ -214,7 +221,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about An Huy here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about An Huy..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-an_huy"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -226,7 +234,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Huy Long here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Huy Long..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-huy_long"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -238,7 +247,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Gia Bách here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Gia Bách..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-gia_bach"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -250,7 +260,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Minh Châu here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Minh Châu..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-minh_chau"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -262,7 +273,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Le Vy here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Le Vy..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-le_vy"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -274,7 +286,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Ngoc Minh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Ngoc Minh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-ngoc_minh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -286,7 +299,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Quang Anh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Quang Anh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-quang_anh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -298,7 +312,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Gia Bao here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Gia Bao..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-gia_bao"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -310,7 +325,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Nhat Minh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Nhat Minh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-nhat_minh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -322,7 +338,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Minh Thanh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Minh Thanh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-minh_thanh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -334,7 +351,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Le Minh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Le Minh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-le_minh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -346,7 +364,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Nhat Nam here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Nhat Nam..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-nhat_nam"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -358,7 +377,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Phuc Quang here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Phuc Quang..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-phuc_quang"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -370,7 +390,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Quang Thanh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Quang Thanh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-quang_thanh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -382,7 +403,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Ta Khoa here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Ta Khoa..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-ta_khoa"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -394,7 +416,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Minh Khoi here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Minh Khoi..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-minh_khoi"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -406,7 +429,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Tien Dung here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Tien Dung..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-tien_dung"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -418,7 +442,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Gia Kien here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Gia Kien..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-gia_kien"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -430,7 +455,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Bao An here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Bao An..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-bao_an"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -442,7 +468,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Diep Anh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Diep Anh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-diep_anh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -454,7 +481,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Tram Anh here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Tram Anh..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-tram_anh"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -466,7 +494,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Minh Ngoc here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Minh Ngoc..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-minh_ngoc"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -478,7 +507,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Lan Vy here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Lan Vy..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-lan_vy"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -490,7 +520,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Ha Vy here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Ha Vy..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-ha_vy"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -502,7 +533,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Bao Han here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Bao Han..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-bao_han"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -514,7 +546,8 @@
       <div class="more-info" contenteditable="true">(Write more stuff about Y Li here...)</div>
       <div class="comment-box">
         <textarea rows="2" placeholder="Say something about Y Li..."></textarea>
-        <button>Add Comment</button>
+        <button class="comment-btn">Add Comment</button>
+        <div class="error-message" id="error-y_li"></div>
         <div class="comments-list"></div>
       </div>
     </div>
@@ -524,184 +557,182 @@
   </p>
 
   <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
   <!-- DOMPurify for XSS prevention -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 
   <!-- Commenting and Saving Functionality -->
   <script>
-    // Simple hash function for unique comment IDs
+    // Generate unique comment IDs
     function generateCommentId(user, text, timestamp) {
-      const str = `${user}${text}${timestamp}`;
+      const str = `${user}${text}${timestamp}${Math.random()}`;
       let hash = 0;
       for (let i = 0; i < str.length; i++) {
         hash = ((hash << 5) - hash) + str.charCodeAt(i);
-        hash |= 0; // Convert to 32-bit integer
+        hash |= 0;
       }
       return Math.abs(hash).toString(36);
     }
 
     // Initialize Firebase
-    let db;
+    let db = null;
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
     try {
-      const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
-        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-        databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
-        projectId: "YOUR_PROJECT_ID",
-        storageBucket: "YOUR_PROJECT_ID.appspot.com",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
-      };
       firebase.initializeApp(firebaseConfig);
       db = firebase.database();
+      document.getElementById('sync-status').textContent = 'Online';
     } catch (error) {
-      console.error("Firebase initialization failed:", error);
-      alert("Failed to connect to the server. Comments will be saved locally and synced later.");
+      console.error('Firebase init error:', error);
+      document.getElementById('sync-status').textContent = 'Offline (Local Mode)';
     }
 
-    // Update sync status
-    const statusDiv = document.getElementById('sync-status');
-    window.addEventListener('offline', () => statusDiv.textContent = 'Offline');
-    window.addEventListener('online', () => statusDiv.textContent = 'Online');
+    // Sync status updates
+    window.addEventListener('offline', () => {
+      document.getElementById('sync-status').textContent = 'Offline';
+    });
+    window.addEventListener('online', () => {
+      document.getElementById('sync-status').textContent = 'Syncing...';
+      setTimeout(() => {
+        if (db) document.getElementById('sync-status').textContent = 'Online';
+      }, 1000);
+    });
 
-    document.addEventListener("DOMContentLoaded", function () {
-      // Setup for each member card
+    document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".card").forEach((card) => {
         const name = card.querySelector("h2")?.innerText.trim();
         const textarea = card.querySelector("textarea");
-        const commentButton = card.querySelector(".comment-box button");
+        const commentButton = card.querySelector(".comment-btn");
         const commentList = card.querySelector(".comments-list");
         const moreInfo = card.querySelector(".more-info");
         const expandBtn = card.querySelector(".expand-btn");
+        const errorMessage = card.querySelector(".error-message");
 
-        // Skip if critical elements are missing
-        if (!name || !moreInfo || !expandBtn || !textarea || !commentButton || !commentList) {
+        if (!name || !moreInfo || !expandBtn || !textarea || !commentButton || !commentList || !errorMessage) {
           console.warn(`Skipping card for ${name || 'unknown'} due to missing elements`);
           return;
         }
 
-        // Local cache keys
-        const infoKey = `more_info_${name.replace(/\s+/g, '_')}`;
-        const commentsKey = `comments_${name.replace(/\s+/g, '_')}`;
+        const infoKey = `more_info_${name.replace(/\s+/g, '_').toLowerCase()}`;
+        const commentsKey = `comments_${name.replace(/\s+/g, '_').toLowerCase()}`;
+        const errorId = `error-${name.replace(/\s+/g, '_').toLowerCase()}`;
 
-        // LOAD SAVED INFO (real-time or local)
-        if (db) {
-          db.ref(`more_info/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
-            const savedInfo = snapshot.val();
-            const localInfo = localStorage.getItem(infoKey);
-            if (savedInfo) {
-              moreInfo.innerHTML = savedInfo;
-              localStorage.setItem(infoKey, savedInfo); // Sync local
-            } else if (localInfo) {
-              moreInfo.innerHTML = localInfo; // Fallback to local
-            } else {
-              moreInfo.innerHTML = `(Write more stuff about ${name} here...)`;
-            }
-            // ADD SAVE BUTTON (if not exists)
-            const existingBtn = moreInfo.querySelector(".save-btn");
-            if (!existingBtn) {
-              moreInfo.appendChild(document.createElement("br"));
-              const saveBtn = document.createElement("button");
-              saveBtn.className = "save-btn";
-              saveBtn.textContent = "Save";
-              moreInfo.appendChild(saveBtn);
-
-              // SAVE INFO when clicked
-              saveBtn.addEventListener("click", () => {
-                const content = DOMPurify.sanitize(moreInfo.innerHTML.replace(/<br><button.*<\/button>/, ''));
-                if (!navigator.onLine || !db) {
-                  localStorage.setItem(infoKey, content);
-                  alert(`Offline or server issue: Info saved locally for ${name}. Will sync when online.`);
-                  return;
-                }
-                db.ref(`more_info/${name.replace(/\s+/g, '_')}`).set(content)
-                  .then(() => {
-                    localStorage.setItem(infoKey, content); // Sync local
-                    alert(`Info synced to cloud for ${name}!`);
-                  })
-                  .catch((error) => {
-                    console.error(`Error saving info for ${name}:`, error);
-                    localStorage.setItem(infoKey, content); // Cache locally
-                    alert(`Failed to sync info for ${name}. Saved locally, try again later.`);
-                  });
-              });
-            }
-          }, (error) => {
-            console.error(`Error loading info for ${name}:`, error);
-            const localInfo = localStorage.getItem(infoKey);
-            if (localInfo) {
-              moreInfo.innerHTML = localInfo; // Fallback
-            }
-          });
-        } else {
+        // Load saved info
+        const loadMoreInfo = () => {
           const localInfo = localStorage.getItem(infoKey);
-          if (localInfo) moreInfo.innerHTML = localInfo;
-        }
+          if (localInfo && !moreInfo.innerHTML.includes('save-btn')) {
+            moreInfo.innerHTML = localInfo;
+          }
+          if (db) {
+            db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`).on('value', (snapshot) => {
+              const savedInfo = snapshot.val();
+              if (savedInfo) {
+                moreInfo.innerHTML = savedInfo;
+                localStorage.setItem(infoKey, savedInfo);
+              } else if (localInfo && !moreInfo.innerHTML.includes('save-btn')) {
+                moreInfo.innerHTML = localInfo;
+              }
+              if (!moreInfo.querySelector(".save-btn")) {
+                moreInfo.appendChild(document.createElement("br"));
+                const saveBtn = document.createElement("button");
+                saveBtn.className = "save-btn";
+                saveBtn.textContent = "Save";
+                moreInfo.appendChild(saveBtn);
+                saveBtn.addEventListener("click", () => {
+                  const content = DOMPurify.sanitize(moreInfo.innerHTML.replace(/<br><button.*<\/button>/, ''));
+                  localStorage.setItem(infoKey, content);
+                  if (!navigator.onLine || !db) {
+                    alert(`Saved locally for ${name}. Will sync when online.`);
+                    return;
+                  }
+                  db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`).set(content)
+                    .then(() => alert(`Info synced for ${name}!`))
+                    .catch((error) => {
+                      console.error(`Error saving info for ${name}:`, error);
+                      alert(`Sync failed for ${name}. Saved locally.`);
+                    });
+                });
+              }
+            }, (error) => {
+              console.error(`Error loading info for ${name}:`, error);
+              if (localInfo) moreInfo.innerHTML = localInfo;
+            });
+          }
+        };
 
-        // LOAD SAVED COMMENTS (real-time or local)
-        if (db) {
-          db.ref(`comments/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
-            commentList.innerHTML = '';
-            const comments = snapshot.val();
-            const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-            let commentArray = [];
-            if (comments) {
-              commentArray = Object.values(comments).sort((a, b) => a.timestamp - b.timestamp);
-              localStorage.setItem(commentsKey, JSON.stringify(commentArray)); // Sync local
-            } else if (localComments.length > 0) {
-              commentArray = localComments;
-            }
-            commentArray.forEach(({ user, text }) => {
+        // Load saved comments
+        const loadComments = () => {
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+          commentList.innerHTML = '';
+          if (localComments.length > 0 && !db) {
+            localComments.forEach(({ user, text }) => {
               const div = document.createElement("div");
               div.className = "comment-item";
               div.textContent = `${user}: ${text}`;
               commentList.appendChild(div);
             });
-          }, (error) => {
-            console.error(`Error loading comments for ${name}:`, error);
-            const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-            if (localComments.length > 0) {
+          }
+          if (db) {
+            db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}`).on('value', (snapshot) => {
+              commentList.innerHTML = '';
+              const comments = snapshot.val();
+              let commentArray = localComments;
+              if (comments) {
+                commentArray = Object.values(comments).sort((a, b) => a.timestamp - b.timestamp);
+                localStorage.setItem(commentsKey, JSON.stringify(commentArray));
+              }
+              commentArray.forEach(({ user, text }) => {
+                const div = document.createElement("div");
+                div.className = "comment-item";
+                div.textContent = `${user}: ${text}`;
+                commentList.appendChild(div);
+              });
+            }, (error) => {
+              console.error(`Error loading comments for ${name}:`, error);
               localComments.forEach(({ user, text }) => {
                 const div = document.createElement("div");
                 div.className = "comment-item";
                 div.textContent = `${user}: ${text}`;
                 commentList.appendChild(div);
               });
-            }
-          });
-        } else {
-          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-          localComments.forEach(({ user, text }) => {
-            const div = document.createElement("div");
-            div.className = "comment-item";
-            div.textContent = `${user}: ${text}`;
-            commentList.appendChild(div);
-          });
-        }
+            });
+          }
+        };
 
-        // ADD COMMENT
+        // Add comment
         commentButton.addEventListener("click", () => {
           const text = textarea.value.trim();
+          errorMessage.style.display = 'none';
           if (!text) {
-            alert("Please enter a comment!");
+            errorMessage.textContent = "Please enter a comment!";
+            errorMessage.style.display = 'block';
             return;
           }
-          let username = prompt("Enter your name:");
+          const username = prompt("Enter your name:");
           if (!username || username.trim() === "") {
-            alert("Please enter a valid name!");
+            errorMessage.textContent = "Please enter a valid name!";
+            errorMessage.style.display = 'block';
             return;
           }
-          username = username.trim();
+          const cleanUsername = username.trim().slice(0, 50);
+          const cleanText = text.slice(0, 500);
           const timestamp = Date.now();
-          const commentId = generateCommentId(username, text, timestamp);
-          const comment = { id: commentId, user: username, text, timestamp };
+          const commentId = generateCommentId(cleanUsername, cleanText, timestamp);
+          const comment = { id: commentId, user: cleanUsername, text: cleanText, timestamp };
 
-          // Always update UI immediately
+          // Update UI immediately
           const div = document.createElement("div");
           div.className = "comment-item";
-          div.textContent = `${username}: ${text}`;
+          div.textContent = `${cleanUsername}: ${cleanText}`;
           commentList.appendChild(div);
           textarea.value = "";
 
@@ -712,20 +743,19 @@
             localStorage.setItem(commentsKey, JSON.stringify(localComments));
           }
 
-          if (!navigator.onLine || !db) {
-            alert(`Offline or server issue: Comment saved locally for ${name}. Will sync when online.`);
-            return;
-          }
-
           // Save to Firebase
-          db.ref(`comments/${name.replace(/\s+/g, '_')}/${commentId}`).set(comment)
-            .then(() => {
-              alert(`Comment synced to cloud for ${name}!`);
-            })
-            .catch((error) => {
-              console.error(`Error adding comment for ${name}:`, error);
-              alert(`Failed to sync comment for ${name}. Saved locally, try again later.`);
-            });
+          if (db && navigator.onLine) {
+            db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}/${commentId}`).set(comment)
+              .then(() => {
+                alert(`Comment synced for ${name}!`);
+              })
+              .catch((error) => {
+                console.error(`Error syncing comment for ${name}:`, error);
+                alert(`Sync failed for ${name}. Saved locally.`);
+              });
+          } else {
+            alert(`Saved locally for ${name}. Will sync when online.`);
+          }
         });
 
         // Expand button
@@ -738,42 +768,44 @@
             expandBtn.textContent = "Click to hide";
           }
         });
+
+        // Initial load
+        loadMoreInfo();
+        loadComments();
       });
 
-      // Sync local data when back online
+      // Sync local data when online
       window.addEventListener('online', () => {
-        statusDiv.textContent = 'Syncing...';
+        if (!db) return;
+        document.getElementById('sync-status').textContent = 'Syncing...';
         document.querySelectorAll(".card").forEach((card) => {
           const name = card.querySelector("h2")?.innerText.trim();
-          if (!name || !db) return;
-          const infoKey = `more_info_${name.replace(/\s+/g, '_')}`;
-          const commentsKey = `comments_${name.replace(/\s+/g, '_')}`;
+          if (!name) return;
+          const infoKey = `more_info_${name.replace(/\s+/g, '_').toLowerCase()}`;
+          const commentsKey = `comments_${name.replace(/\s+/g, '_').toLowerCase()}`;
           const localInfo = localStorage.getItem(infoKey);
           const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
 
-          // Sync more-info
           if (localInfo) {
-            db.ref(`more_info/${name.replace(/\s+/g, '_')}`).set(DOMPurify.sanitize(localInfo))
-              .then(() => console.log(`Synced info for ${name}`))
+            db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`).set(DOMPurify.sanitize(localInfo))
               .catch((error) => console.error(`Error syncing info for ${name}:`, error));
           }
 
-          // Sync comments
           if (localComments.length > 0) {
-            db.ref(`comments/${name.replace(/\s+/g, '_')}`).once('value', (snapshot) => {
+            db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}`).once('value', (snapshot) => {
               const remoteComments = snapshot.val() || {};
               localComments.forEach((comment) => {
                 if (!remoteComments[comment.id]) {
-                  db.ref(`comments/${name.replace(/\s+/g, '_')}/${comment.id}`).set(comment)
-                    .then(() => console.log(`Synced comment for ${name}`))
+                  db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}/${comment.id}`).set(comment)
                     .catch((error) => console.error(`Error syncing comment for ${name}:`, error));
                 }
               });
             });
           }
         });
-        alert('Back online! All local changes synced to cloud.');
-        statusDiv.textContent = 'Online';
+        setTimeout(() => {
+          document.getElementById('sync-status').textContent = 'Online';
+        }, 1000);
       });
     });
   </script>
