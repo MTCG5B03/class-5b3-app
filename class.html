@@ -514,12 +514,22 @@
   <!-- 🔥 Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
   <!-- 🛡️ DOMPurify for XSS prevention -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
 
   <!-- 💬 Commenting and Saving Functionality -->
   <script>
+    // Simple hash function for unique comment IDs
+    function generateCommentId(user, text, timestamp) {
+      const str = `${user}${text}${timestamp}`;
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash |= 0; // Convert to 32-bit integer
+      }
+      return Math.abs(hash).toString(36);
+    }
+
     // Initialize Firebase
     const firebaseConfig = {
       apiKey: "YOUR_API_KEY",
@@ -532,13 +542,6 @@
     };
     firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-    const auth = firebase.auth();
-
-    // Sign in anonymously
-    auth.signInAnonymously().catch((error) => {
-      console.error('Anonymous auth failed:', error);
-      alert('Failed to connect to server. You can still comment and edit info, but changes may not sync.');
-    });
 
     document.addEventListener("DOMContentLoaded", function () {
       // 🔁 Setup for each member card
@@ -586,18 +589,18 @@
               const content = DOMPurify.sanitize(moreInfo.innerHTML.replace(/<br><button.*<\/button>/, ''));
               if (!navigator.onLine) {
                 localStorage.setItem(infoKey, content);
-                alert(`Offline: Info saved locally for ${name}. Sync when online.`);
+                alert(`Offline: Info saved locally for ${name}. Will sync when online.`);
                 return;
               }
               db.ref(`more_info/${name.replace(/\s+/g, '_')}`).set(content)
                 .then(() => {
                   localStorage.setItem(infoKey, content); // Sync local
-                  alert(`Info saved for ${name}!`);
+                  alert(`Info synced to cloud for ${name}!`);
                 })
                 .catch((error) => {
                   console.error(`Error saving info for ${name}:`, error);
                   localStorage.setItem(infoKey, content); // Cache locally
-                  alert(`Failed to save info for ${name}. Saved locally, try again later.`);
+                  alert(`Failed to sync info for ${name}. Saved locally, try again later.`);
                 });
             });
           }
@@ -613,13 +616,13 @@
         db.ref(`comments/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
           commentList.innerHTML = '';
           const comments = snapshot.val();
-          const localComments = localStorage.getItem(commentsKey);
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
           let commentArray = [];
           if (comments) {
             commentArray = Object.values(comments).sort((a, b) => a.timestamp - b.timestamp);
             localStorage.setItem(commentsKey, JSON.stringify(commentArray)); // Sync local
-          } else if (localComments) {
-            commentArray = JSON.parse(localComments); // Fallback to local
+          } else if (localComments.length > 0) {
+            commentArray = localComments;
           }
           commentArray.forEach(({ user, text }) => {
             const div = document.createElement("div");
@@ -629,9 +632,9 @@
           });
         }, (error) => {
           console.error(`Error loading comments for ${name}:`, error);
-          const localComments = localStorage.getItem(commentsKey);
-          if (localComments) {
-            JSON.parse(localComments).forEach(({ user, text }) => {
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+          if (localComments.length > 0) {
+            localComments.forEach(({ user, text }) => {
               const div = document.createElement("div");
               div.className = "comment-item";
               div.textContent = `${user}: ${text}`;
@@ -646,30 +649,12 @@
           if (text) {
             const username = prompt("Enter your name:");
             if (!username) return;
-            const comment = { user: username, text, timestamp: Date.now() };
+            const timestamp = Date.now();
+            const commentId = generateCommentId(username, text, timestamp);
+            const comment = { id: commentId, user: username, text, timestamp };
             if (!navigator.onLine) {
               const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-              localComments.push(comment);
-              localStorage.setItem(commentsKey, JSON.stringify(localComments));
-              const div = document.createElement("div");
-              div.className = "comment-item";
-              div.textContent = `${username}: ${text}`;
-              commentList.appendChild(div);
-              textarea.value = "";
-              alert(`Offline: Comment saved locally for ${name}. Sync when online.`);
-              return;
-            }
-            db.ref(`comments/${name.replace(/\s+/g, '_')}`).push(comment)
-              .then(() => {
-                textarea.value = "";
-                const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
-                localComments.push(comment);
-                localStorage.setItem(commentsKey, JSON.stringify(localComments)); // Sync local
-                alert(`Comment added for ${name}!`);
-              })
-              .catch((error) => {
-                console.error(`Error adding comment for ${name}:`, error);
-                const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+              if (!localComments.some(c => c.id === commentId)) {
                 localComments.push(comment);
                 localStorage.setItem(commentsKey, JSON.stringify(localComments));
                 const div = document.createElement("div");
@@ -677,7 +662,33 @@
                 div.textContent = `${username}: ${text}`;
                 commentList.appendChild(div);
                 textarea.value = "";
-                alert(`Failed to save comment for ${name}. Saved locally, try again later.`);
+                alert(`Offline: Comment saved locally for ${name}. Will sync when online.`);
+              }
+              return;
+            }
+            db.ref(`comments/${name.replace(/\s+/g, '_')}/${commentId}`).set(comment)
+              .then(() => {
+                const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+                if (!localComments.some(c => c.id === commentId)) {
+                  localComments.push(comment);
+                  localStorage.setItem(commentsKey, JSON.stringify(localComments));
+                }
+                textarea.value = "";
+                alert(`Comment synced to cloud for ${name}!`);
+              })
+              .catch((error) => {
+                console.error(`Error adding comment for ${name}:`, error);
+                const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+                if (!localComments.some(c => c.id === commentId)) {
+                  localComments.push(comment);
+                  localStorage.setItem(commentsKey, JSON.stringify(localComments));
+                  const div = document.createElement("div");
+                  div.className = "comment-item";
+                  div.textContent = `${username}: ${text}`;
+                  commentList.appendChild(div);
+                  textarea.value = "";
+                  alert(`Failed to sync comment for ${name}. Saved locally, try again later.`);
+                }
               });
           }
         });
@@ -703,17 +714,29 @@
           const commentsKey = `comments_${name.replace(/\s+/g, '_')}`;
           const localInfo = localStorage.getItem(infoKey);
           const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+
+          // Sync more-info
           if (localInfo) {
             db.ref(`more_info/${name.replace(/\s+/g, '_')}`).set(DOMPurify.sanitize(localInfo))
+              .then(() => console.log(`Synced info for ${name}`))
               .catch((error) => console.error(`Error syncing info for ${name}:`, error));
           }
+
+          // Sync comments
           if (localComments.length > 0) {
-            localComments.forEach((comment) => {
-              db.ref(`comments/${name.replace(/\s+/g, '_')}`).push(comment)
-                .catch((error) => console.error(`Error syncing comment for ${name}:`, error));
+            db.ref(`comments/${name.replace(/\s+/g, '_')}`).once('value', (snapshot) => {
+              const remoteComments = snapshot.val() || {};
+              localComments.forEach((comment) => {
+                if (!remoteComments[comment.id]) {
+                  db.ref(`comments/${name.replace(/\s+/g, '_')}/${comment.id}`).set(comment)
+                    .then(() => console.log(`Synced comment for ${name}`))
+                    .catch((error) => console.error(`Error syncing comment for ${name}:`, error));
+                }
+              });
             });
           }
         });
+        alert('Back online! All local changes synced to cloud.');
       });
     });
   </script>
