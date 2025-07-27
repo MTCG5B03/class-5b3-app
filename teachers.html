@@ -178,200 +178,422 @@
       margin-bottom: 0.3rem;
       border-radius: 4px;
     }
+
+    #sync-status {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      padding: 5px 10px;
+      border-radius: 4px;
+      background: #fff;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      color: #333;
+    }
+
+    .error-message {
+      color: #d00000;
+      font-size: 0.8rem;
+      margin-top: 0.5rem;
+      display: none;
+      background-color: #ffe6e6;
+      padding: 0.3rem;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
-  <!-- 🌐 Navigation bar -->
+  <div id="sync-status" role="status" aria-live="polite">Checking...</div>
+  <!-- Navigation bar -->
   <nav>
-    <a href="index.html">🏠 Home</a>
-    <a href="class.html">👥 Class Members</a>
-    <a href="gallery.html">📸 Class Gallery</a>
-    <a href="couples.html">💘 Confirmed Couples</a>
-    <a class="tribute-btn" href="teachers.html">Tribute for Teachers 🫡</a>
+    <a href="index.html" aria-label="Home page">🏠 Home</a>
+    <a href="class.html" aria-label="Class members page">👥 Class Members</a>
+    <a href="gallery.html" aria-label="Class gallery page">📸 Class Gallery</a>
+    <a href="couples.html" aria-label="Confirmed couples page">💘 Confirmed Couples</a>
+    <a class="tribute-btn" href="teachers.html" aria-label="Tribute for teachers page">Tribute for Teachers 🫡</a>
   </nav>
   <h1 style="margin-top: 2rem; color: #fff; text-shadow: 2px 2px 5px #000;">Class 5B3 Teachers</h1>
 
-  <!-- 👨‍🏫 Teachers Section -->
-  <section class="teachers" id="teachers-section">
+  <!-- Teachers Section -->
+  <section class="teachers" id="teachers-section" aria-label="Teachers section">
     <div class="card">
-      <img src="mrpatrick.png" alt="Mr Patrick profile picture" class="profile-pic">
+      <img src="mrpatrick.png" alt="Mr Patrick Jonathan Palmer profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
       <h2>Mr Patrick Jonathan Palmer <span class="tag man">Man</span></h2>
       <p>Homeroom Teacher 🧑‍🏫</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Mr Patrick here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-mr_patrick_jonathan_palmer">Click to see more</button>
+      <div class="more-info" id="info-mr_patrick_jonathan_palmer" contenteditable="true" aria-label="Editable information about Mr Patrick">(Write more stuff about Mr Patrick here...)</div>
+      <button class="save-btn" aria-label="Save information for Mr Patrick">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Mr Patrick..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Mr Patrick..." aria-label="Comment input for Mr Patrick"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Mr Patrick">Add Comment</button>
+        <div class="error-message" id="error-mr_patrick_jonathan_palmer" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Mr Patrick"></div>
       </div>
     </div>
     <div class="card">
-      <img src="mrlong.png" alt="Mr Long profile picture" class="profile-pic">
+      <img src="mrlong.png" alt="Mr Long profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
       <h2>Mr Long <span class="tag man">Man</span></h2>
       <p>Assistant Teacher 👨🏻‍🏫</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Mr Long here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-mr_long">Click to see more</button>
+      <div class="more-info" id="info-mr_long" contenteditable="true" aria-label="Editable information about Mr Long">(Write more stuff about Mr Long here...)</div>
+      <button class="save-btn" aria-label="Save information for Mr Long">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Mr Long..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Mr Long..." aria-label="Comment input for Mr Long"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Mr Long">Add Comment</button>
+        <div class="error-message" id="error-mr_long" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Mr Long"></div>
       </div>
     </div>
     <div class="card">
-      <img src="msquynh.png" alt="Ms Quynh profile picture" class="profile-pic">
+      <img src="msquynh.png" alt="Ms Quynh profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
       <h2>Ms Quynh <span class="tag woman">Woman</span></h2>
       <p>Vietnamese Teacher 🇻🇳</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Ms Quynh here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-ms_quynh">Click to see more</button>
+      <div class="more-info" id="info-ms_quynh" contenteditable="true" aria-label="Editable information about Ms Quynh">(Write more stuff about Ms Quynh here...)</div>
+      <button class="save-btn" aria-label="Save information for Ms Quynh">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Ms Quynh..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Ms Quynh..." aria-label="Comment input for Ms Quynh"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Ms Quynh">Add Comment</button>
+        <div class="error-message" id="error-ms_quynh" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Ms Quynh"></div>
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/100" alt="Ms Hoa profile picture" class="profile-pic">
+      <img src="https://via.placeholder.com/100" alt="Ms Hoa profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
       <h2>Ms Hoa <span class="tag woman">Woman</span></h2>
       <p>Vietnamese Teacher 🇻🇳</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Ms Hoa here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-ms_hoa">Click to see more</button>
+      <div class="more-info" id="info-ms_hoa" contenteditable="true" aria-label="Editable information about Ms Hoa">(Write more stuff about Ms Hoa here...)</div>
+      <button class="save-btn" aria-label="Save information for Ms Hoa">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Ms Hoa..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Ms Hoa..." aria-label="Comment input for Ms Hoa"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Ms Hoa">Add Comment</button>
+        <div class="error-message" id="error-ms_hoa" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Ms Hoa"></div>
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/100" alt="Ms Elaine profile picture" class="profile-pic">
+      <img src="https://via.placeholder.com/100" alt="Ms Elaine Cheung profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
       <h2>Ms Elaine Cheung <span class="tag woman">Woman</span></h2>
       <p>Science Teacher 🔬</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Ms Elaine here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-ms_elaine_cheung">Click to see more</button>
+      <div class="more-info" id="info-ms_elaine_cheung" contenteditable="true" aria-label="Editable information about Ms Elaine">(Write more stuff about Ms Elaine here...)</div>
+      <button class="save-btn" aria-label="Save information for Ms Elaine">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Ms Elaine..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Ms Elaine..." aria-label="Comment input for Ms Elaine"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Ms Elaine">Add Comment</button>
+        <div class="error-message" id="error-ms_elaine_cheung" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Ms Elaine"></div>
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/100" alt="Mr Stephen profile picture" class="profile-pic">
+      <img src="https://via.placeholder.com/100" alt="Mr Stephen James Kattri profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
       <h2>Mr Stephen James Kattri <span class="tag man">Man</span></h2>
       <p>ICT Teacher 💻</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Mr Stephen here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-mr_stephen_james_kattri">Click to see more</button>
+      <div class="more-info" id="info-mr_stephen_james_kattri" contenteditable="true" aria-label="Editable information about Mr Stephen">(Write more stuff about Mr Stephen here...)</div>
+      <button class="save-btn" aria-label="Save information for Mr Stephen">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Mr Stephen..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Mr Stephen..." aria-label="Comment input for Mr Stephen"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Mr Stephen">Add Comment</button>
+        <div class="error-message" id="error-mr_stephen_james_kattri" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Mr Stephen"></div>
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/100" alt="Mr Duy profile picture" class="profile-pic">
+      <img src="https://via.placeholder.com/100" alt="Mr Duy profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
       <h2>Mr Duy <span class="tag man">Man</span></h2>
       <p>PE Teacher 🏃‍♂️</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Mr Duy here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-mr_duy">Click to see more</button>
+      <div class="more-info" id="info-mr_duy" contenteditable="true" aria-label="Editable information about Mr Duy">(Write more stuff about Mr Duy here...)</div>
+      <button class="save-btn" aria-label="Save information for Mr Duy">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Mr Duy..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Mr Duy..." aria-label="Comment input for Mr Duy"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Mr Duy">Add Comment</button>
+        <div class="error-message" id="error-mr_duy" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Mr Duy"></div>
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/100" alt="Ms Mai profile picture" class="profile-pic">
-      <h2>Ms Thủy <span class="tag woman">Woman</span></h2>
+      <img src="https://via.placeholder.com/100" alt="Ms Thuy profile picture" class="profile-pic" onerror="this.src='https://via.placeholder.com/100?text=Teacher'">
+      <h2>Ms Thuy <span class="tag woman">Woman</span></h2>
       <p>Music Teacher 🎶</p>
-      <button class="expand-btn">Click to see more</button>
-      <div class="more-info" contenteditable="true">(Write more stuff about Ms Mai here...)</div>
+      <button class="expand-btn" aria-expanded="false" aria-controls="info-ms_thuy">Click to see more</button>
+      <div class="more-info" id="info-ms_thuy" contenteditable="true" aria-label="Editable information about Ms Thuy">(Write more stuff about Ms Thuy here...)</div>
+      <button class="save-btn" aria-label="Save information for Ms Thuy">Save</button>
       <div class="comment-box">
-        <textarea rows="2" placeholder="Say something about Ms Mai..."></textarea>
-        <button>Add Comment</button>
-        <div class="comments-list"></div>
+        <textarea rows="2" placeholder="Say something about Ms Thuy..." aria-label="Comment input for Ms Thuy"></textarea>
+        <button class="comment-btn" aria-label="Add comment for Ms Thuy">Add Comment</button>
+        <div class="error-message" id="error-ms_thuy" role="alert"></div>
+        <div class="comments-list" aria-label="Comments for Ms Thuy"></div>
       </div>
     </div>
   </section>
 
-  <!-- 💬 Commenting and Saving Functionality -->
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-database-compat.js"></script>
+  <!-- DOMPurify for XSS prevention -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js"></script>
+
+  <!-- Commenting and Saving Functionality -->
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      // 🔁 Setup for each teacher card
+    // Generate unique comment IDs
+    function generateCommentId(user, text, timestamp) {
+      const str = `${user}${text}${timestamp}${Math.random()}`;
+      let hash = 0;
+      for (let i = 0; i < str.length; i++) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(i);
+        hash |= 0;
+      }
+      return Math.abs(hash).toString(36);
+    }
+
+    // Initialize Firebase
+    let db = null;
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    try {
+      firebase.initializeApp(firebaseConfig);
+      db = firebase.database();
+      document.getElementById('sync-status').textContent = 'Online';
+    } catch (error) {
+      console.error('Firebase init error:', error);
+      document.getElementById('sync-status').textContent = 'Offline (Local Mode)';
+    }
+
+    // Sync status updates
+    window.addEventListener('offline', () => {
+      document.getElementById('sync-status').textContent = 'Offline';
+    });
+    window.addEventListener('online', () => {
+      document.getElementById('sync-status').textContent = 'Syncing...';
+      setTimeout(() => {
+        if (db) document.getElementById('sync-status').textContent = 'Online';
+      }, 1000);
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll(".card").forEach((card) => {
         const name = card.querySelector("h2")?.innerText.trim();
         const textarea = card.querySelector("textarea");
-        const commentButton = card.querySelector(".comment-box button");
+        const commentButton = card.querySelector(".comment-btn");
         const commentList = card.querySelector(".comments-list");
         const moreInfo = card.querySelector(".more-info");
         const expandBtn = card.querySelector(".expand-btn");
+        const saveBtn = card.querySelector(".save-btn");
+        const errorMessage = card.querySelector(".error-message");
 
-        // Skip if critical elements are missing
-        if (!name || !moreInfo || !expandBtn || !textarea || !commentButton || !commentList) {
+        if (!name || !moreInfo || !expandBtn || !saveBtn || !textarea || !commentButton || !commentList || !errorMessage) {
           console.warn(`Skipping card for ${name || 'unknown'} due to missing elements`);
           return;
         }
 
-        // ✅ LOAD SAVED INFO (if any)
-        const savedInfo = localStorage.getItem("more_info_" + name);
-        if (savedInfo) {
-          moreInfo.innerHTML = savedInfo;
-        }
+        const infoKey = `more_info_${name.replace(/\s+/g, '_').toLowerCase()}`;
+        const commentsKey = `comments_${name.replace(/\s+/g, '_').toLowerCase()}`;
+        const errorId = `error-${name.replace(/\s+/g, '_').toLowerCase()}`;
 
-        // 🔘 ADD SAVE BUTTON (always)
-        const saveBtn = document.createElement("button");
-        saveBtn.className = "save-btn";
-        saveBtn.textContent = "Save";
-        moreInfo.appendChild(document.createElement("br"));
-        moreInfo.appendChild(saveBtn);
+        // Load saved info
+        const loadMoreInfo = () => {
+          const localInfo = localStorage.getItem(infoKey);
+          if (localInfo) {
+            moreInfo.innerHTML = localInfo;
+          }
+          if (db) {
+            const infoRef = db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`);
+            infoRef.on('value', (snapshot) => {
+              const savedInfo = snapshot.val();
+              if (savedInfo) {
+                moreInfo.innerHTML = savedInfo;
+                localStorage.setItem(infoKey, savedInfo);
+              } else if (localInfo) {
+                moreInfo.innerHTML = localInfo;
+              }
+            }, (error) => {
+              console.error(`Error loading info for ${name}:`, error);
+              if (localInfo) moreInfo.innerHTML = localInfo;
+            });
+          }
+        };
 
-        // 💾 SAVE INFO when clicked
-        saveBtn.addEventListener("click", () => {
-          // Save everything *except* the Save button
-          const content = moreInfo.innerHTML.replace(/<br><button.*<\/button>/, '');
-          localStorage.setItem("more_info_" + name, content);
-          alert("Info saved for " + name + "!");
-        });
+        // Load saved comments
+        const loadComments = () => {
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+          commentList.innerHTML = '';
+          if (localComments.length > 0 && !db) {
+            localComments.forEach(({ user, text }) => {
+              const div = document.createElement("div");
+              div.className = "comment-item";
+              div.textContent = `${user}: ${text}`;
+              commentList.appendChild(div);
+            });
+          }
+          if (db) {
+            const commentsRef = db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}`);
+            commentsRef.on('value', (snapshot) => {
+              commentList.innerHTML = '';
+              const comments = snapshot.val();
+              let commentArray = localComments;
+              if (comments) {
+                commentArray = Object.values(comments).sort((a, b) => a.timestamp - b.timestamp);
+                localStorage.setItem(commentsKey, JSON.stringify(commentArray));
+              }
+              commentArray.forEach(({ user, text }) => {
+                const div = document.createElement("div");
+                div.className = "comment-item";
+                div.textContent = `${user}: ${text}`;
+                commentList.appendChild(div);
+              });
+            }, (error) => {
+              console.error(`Error loading comments for ${name}:`, error);
+              localComments.forEach(({ user, text }) => {
+                const div = document.createElement("div");
+                div.className = "comment-item";
+                div.textContent = `${user}: ${text}`;
+                commentList.appendChild(div);
+              });
+            });
+          }
+        };
 
-        // 💬 LOAD SAVED COMMENTS
-        const savedComments = localStorage.getItem("comments_" + name);
-        if (savedComments) {
-          JSON.parse(savedComments).forEach(({ user, text }) => {
-            const div = document.createElement("div");
-            div.className = "comment-item";
-            div.textContent = `${user}: ${text}`;
-            commentList.appendChild(div);
-          });
-        }
-
-        // 💬 ADD COMMENT
+        // Add comment
         commentButton.addEventListener("click", () => {
           const text = textarea.value.trim();
-          if (text) {
-            const username = prompt("Enter your name:");
-            if (!username) return;
-
-            const div = document.createElement("div");
-            div.className = "comment-item";
-            div.textContent = `${username}: ${text}`;
-            commentList.appendChild(div);
-
-            const existing = localStorage.getItem("comments_" + name);
-            const comments = existing ? JSON.parse(existing) : [];
-            comments.push({ user: username, text: text });
-            localStorage.setItem("comments_" + name, JSON.stringify(comments));
-
-            textarea.value = "";
+          errorMessage.style.display = 'none';
+          if (!text) {
+            errorMessage.textContent = "Please enter a comment!";
+            errorMessage.style.display = 'block';
+            return;
           }
-        });
+          const username = prompt("Enter your name:");
+          if (!username || username.trim() === "") {
+            errorMessage.textContent = "Please enter a valid name!";
+            errorMessage.style.display = 'block';
+            return;
+          }
+          const cleanUsername = username.trim().slice(0, 50);
+          const cleanText = text.slice(0, 500);
+          const timestamp = Date.now();
+          const commentId = generateCommentId(cleanUsername, cleanText, timestamp);
+          const comment = { id: commentId, user: cleanUsername, text: cleanText, timestamp };
 
-        // 🔁 Expand button
-        expandBtn.addEventListener("click", () => {
-          if (moreInfo.style.display === "block") {
-            moreInfo.style.display = "none";
-            expandBtn.textContent = "Click to see more";
+          // Update UI immediately
+          const div = document.createElement("div");
+          div.className = "comment-item";
+          div.textContent = `${cleanUsername}: ${cleanText}`;
+          commentList.appendChild(div);
+          textarea.value = "";
+
+          // Save to localStorage
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+          if (!localComments.some(c => c.id === commentId)) {
+            localComments.push(comment);
+            localStorage.setItem(commentsKey, JSON.stringify(localComments));
+          }
+
+          // Save to Firebase
+          if (db && navigator.onLine) {
+            db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}/${commentId}`).set(comment)
+              .then(() => {
+                alert(`Comment synced for ${name}!`);
+              })
+              .catch((error) => {
+                console.error(`Error syncing comment for ${name}:`, error);
+                alert(`Sync failed for ${name}. Saved locally.`);
+              });
           } else {
-            moreInfo.style.display = "block";
-            expandBtn.textContent = "Click to hide";
+            alert(`Saved locally for ${name}. Will sync when online.`);
           }
         });
+
+        // Save more-info with conflict check
+        saveBtn.addEventListener("click", () => {
+          const content = DOMPurify.sanitize(moreInfo.innerHTML);
+          localStorage.setItem(infoKey, content);
+          if (!navigator.onLine || !db) {
+            alert(`Saved locally for ${name}. Will sync when online.`);
+            return;
+          }
+          db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`).once('value', (snapshot) => {
+            const remoteContent = snapshot.val();
+            if (remoteContent && remoteContent !== content && !confirm(`Warning: ${name}'s info has been updated by someone else. Overwrite?`)) {
+              return;
+            }
+            db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`).set(content)
+              .then(() => alert(`Info synced for ${name}!`))
+              .catch((error) => {
+                console.error(`Error saving info for ${name}:`, error);
+                alert(`Sync failed for ${name}. Saved locally.`);
+              });
+          });
+        });
+
+        // Expand button
+        expandBtn.addEventListener("click", () => {
+          const isExpanded = moreInfo.style.display === "block";
+          moreInfo.style.display = isExpanded ? "none" : "block";
+          expandBtn.textContent = isExpanded ? "Click to see more" : "Click to hide";
+          expandBtn.setAttribute("aria-expanded", !isExpanded);
+        });
+
+        // Keyboard accessibility for expand button
+        expandBtn.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            expandBtn.click();
+          }
+        });
+
+        // Initial load
+        loadMoreInfo();
+        loadComments();
+      });
+
+      // Sync local data when online
+      window.addEventListener('online', () => {
+        if (!db) return;
+        document.getElementById('sync-status').textContent = 'Syncing...';
+        document.querySelectorAll(".card").forEach((card) => {
+          const name = card.querySelector("h2")?.innerText.trim();
+          if (!name) return;
+          const infoKey = `more_info_${name.replace(/\s+/g, '_').toLowerCase()}`;
+          const commentsKey = `comments_${name.replace(/\s+/g, '_').toLowerCase()}`;
+          const localInfo = localStorage.getItem(infoKey);
+          const localComments = JSON.parse(localStorage.getItem(commentsKey) || '[]');
+
+          if (localInfo) {
+            db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`).once('value', (snapshot) => {
+              const remoteContent = snapshot.val();
+              if (!remoteContent) {
+                db.ref(`more_info/${name.replace(/\s+/g, '_').toLowerCase()}`).set(DOMPurify.sanitize(localInfo))
+                  .catch((error) => console.error(`Error syncing info for ${name}:`, error));
+              }
+            });
+          }
+
+          if (localComments.length > 0) {
+            db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}`).once('value', (snapshot) => {
+              const remoteComments = snapshot.val() || {};
+              localComments.forEach((comment) => {
+                if (!remoteComments[comment.id]) {
+                  db.ref(`comments/${name.replace(/\s+/g, '_').toLowerCase()}/${comment.id}`).set(comment)
+                    .catch((error) => console.error(`Error syncing comment for ${name}:`, error));
+                }
+              });
+            });
+          }
+        });
+        setTimeout(() => {
+          document.getElementById('sync-status').textContent = 'Online';
+        }, 1000);
       });
     });
   </script>
