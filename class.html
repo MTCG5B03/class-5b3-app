@@ -219,7 +219,7 @@
       </div>
     </div>
     <div class="card">
-      <img src=giabach.png alt="Gia Bách profile picture" class="profile-pic">
+      <img src="giabach.png" alt="Gia Bách profile picture" class="profile-pic">
       <h2>Gia Bách <span class="tag boy">Boy</span></h2>
       <p>Always vibin', super cool Minecraft gamer 🕹️😎</p>
       <button class="expand-btn">Click to see more</button>
@@ -281,7 +281,7 @@
     <div class="card">
       <img src="giabao.png" alt="Gia Bao profile picture" class="profile-pic">
       <h2>Gia Bao <span class="tag boy">Boy</span></h2>
-      <p>Act first, think later, class' clown  🤡🤚</p>
+      <p>Act first, think later, class' clown 🤡🤚</p>
       <button class="expand-btn">Click to see more</button>
       <div class="more-info" contenteditable="true">(Write more stuff about Gia Bao here...)</div>
       <div class="comment-box">
@@ -291,7 +291,7 @@
       </div>
     </div>
     <div class="card">
-      <img src=nhatminh.png alt="Nhat Minh profile picture" class="profile-pic">
+      <img src="nhatminh.png" alt="Nhat Minh profile picture" class="profile-pic">
       <h2>Nhat Minh <span class="tag boy">Boy</span></h2>
       <p>Determined balls of steel guy 🤘</p>
       <button class="expand-btn">Click to see more</button>
@@ -447,7 +447,7 @@
       </div>
     </div>
     <div class="card">
-      <img src=minhngoc.png alt="Minh Ngoc profile picture" class="profile-pic">
+      <img src="minhngoc.png" alt="Minh Ngoc profile picture" class="profile-pic">
       <h2>Minh Ngoc <span class="tag girl">Girl</span></h2>
       <p>Raps English everywhere 🗣️</p>
       <button class="expand-btn">Click to see more</button>
@@ -507,9 +507,29 @@
       </div>
     </div>
   </section>
+  <p style="font-size: 20%; font-weight: bold; text-align: center;">
+    5B3 STUDENTS ARE LEGENDS 🏆🎓🚀😎🔥
+  </p>
+
+  <!-- 🔥 Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-database-compat.js"></script>
 
   <!-- 💬 Commenting and Saving Functionality -->
   <script>
+    // Initialize Firebase
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      databaseURL: "https://YOUR_PROJECT_ID.firebaseio.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     document.addEventListener("DOMContentLoaded", function () {
       // 🔁 Setup for each member card
       document.querySelectorAll(".card").forEach((card) => {
@@ -526,37 +546,46 @@
           return;
         }
 
-        // ✅ LOAD SAVED INFO (if any)
-        const savedInfo = localStorage.getItem("more_info_" + name);
-        if (savedInfo) {
-          moreInfo.innerHTML = savedInfo;
-        }
+        // ✅ LOAD SAVED INFO (real-time)
+        db.ref(`more_info/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
+          const savedInfo = snapshot.val();
+          if (savedInfo) {
+            moreInfo.innerHTML = savedInfo;
+          } else {
+            moreInfo.innerHTML = `(Write more stuff about ${name} here...)`;
+          }
+          // 🔘 ADD SAVE BUTTON (always)
+          const existingBtn = moreInfo.querySelector(".save-btn");
+          if (!existingBtn) {
+            moreInfo.appendChild(document.createElement("br"));
+            const saveBtn = document.createElement("button");
+            saveBtn.className = "save-btn";
+            saveBtn.textContent = "Save";
+            moreInfo.appendChild(saveBtn);
 
-        // 🔘 ADD SAVE BUTTON (always)
-        const saveBtn = document.createElement("button");
-        saveBtn.className = "save-btn";
-        saveBtn.textContent = "Save";
-        moreInfo.appendChild(document.createElement("br"));
-        moreInfo.appendChild(saveBtn);
-
-        // 💾 SAVE INFO when clicked
-        saveBtn.addEventListener("click", () => {
-          // Save everything *except* the Save button
-          const content = moreInfo.innerHTML.replace(/<br><button.*<\/button>/, '');
-          localStorage.setItem("more_info_" + name, content);
-          alert("Info saved for " + name + "!");
+            // 💾 SAVE INFO when clicked
+            saveBtn.addEventListener("click", () => {
+              const content = moreInfo.innerHTML.replace(/<br><button.*<\/button>/, '');
+              db.ref(`more_info/${name.replace(/\s+/g, '_')}`).set(content)
+                .then(() => alert(`Info saved for ${name}!`))
+                .catch((error) => console.error(`Error saving info for ${name}:`, error));
+            });
+          }
         });
 
-        // 💬 LOAD SAVED COMMENTS
-        const savedComments = localStorage.getItem("comments_" + name);
-        if (savedComments) {
-          JSON.parse(savedComments).forEach(({ user, text }) => {
-            const div = document.createElement("div");
-            div.className = "comment-item";
-            div.textContent = `${user}: ${text}`;
-            commentList.appendChild(div);
-          });
-        }
+        // 💬 LOAD SAVED COMMENTS (real-time)
+        db.ref(`comments/${name.replace(/\s+/g, '_')}`).on('value', (snapshot) => {
+          commentList.innerHTML = '';
+          const comments = snapshot.val();
+          if (comments) {
+            Object.values(comments).sort((a, b) => a.timestamp - b.timestamp).forEach(({ user, text }) => {
+              const div = document.createElement("div");
+              div.className = "comment-item";
+              div.textContent = `${user}: ${text}`;
+              commentList.appendChild(div);
+            });
+          }
+        });
 
         // 💬 ADD COMMENT
         commentButton.addEventListener("click", () => {
@@ -565,17 +594,12 @@
             const username = prompt("Enter your name:");
             if (!username) return;
 
-            const div = document.createElement("div");
-            div.className = "comment-item";
-            div.textContent = `${username}: ${text}`;
-            commentList.appendChild(div);
-
-            const existing = localStorage.getItem("comments_" + name);
-            const comments = existing ? JSON.parse(existing) : [];
-            comments.push({ user: username, text: text });
-            localStorage.setItem("comments_" + name, JSON.stringify(comments));
-
-            textarea.value = "";
+            const comment = { user: username, text, timestamp: Date.now() };
+            db.ref(`comments/${name.replace(/\s+/g, '_')}`).push(comment)
+              .then(() => {
+                textarea.value = "";
+              })
+              .catch((error) => console.error(`Error adding comment for ${name}:`, error));
           }
         });
 
@@ -594,7 +618,3 @@
   </script>
 </body>
 </html>
-<p style="font-size: 20%; font-weight: bold;">
-  5B3 STUDENTS ARE LEGENDS 🏆🎓🚀😎🔥
-</p>
-
